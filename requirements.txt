@@ -1,0 +1,7 @@
+asgiref==3.2.7
+Django==2.0
+pyHook==1.5.1
+pytz==2019.3
+PyUserInput==0.1.11
+pywin32==227
+sqlparse==0.3.1

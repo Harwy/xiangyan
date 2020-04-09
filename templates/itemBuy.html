@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    香烟自动化系统|商品录入
+{% endblock %}
+
+{% block nav_buy %}active{% endblock %}
+
+{% block content %}
+    <div class="col-12">
+        <div class="row">
+            <h1 class="p-5">商品录入界面</h1>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">uid</th>
+                    <th scope="col">商品名称</th>
+                    <th scope="col">商品编码</th>
+                    <th scope="col">库存</th>
+                    <th scope="col">入库</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <th scope="row">{{ item.uid }}</th>
+                            <td>{{ item.name }}</td>
+                            <td id="star">{{ item.pid }}</td>
+                            <td>{{ item.number }}</td>
+                            <td>
+                                <input type="text" id="entry" class="form-control col-md-4" placeholder="输入大于0的数字">
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <th scope="row">1</th>
+                            <td colspan="4">当前无库存</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <input id="submit" type="submit" class="btn btn-primary" value="确认录入">
+        </div>
+    </div>
+{% endblock %}
+
+{% block script_extends %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#submit").click(function(){
+                var items = $("#star").nextAll;
+                var numbers = $("#entry").nextAll;
+                console.log(items);
+            })
+        })
+    </script>
+{% endblock %}

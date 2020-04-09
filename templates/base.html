@@ -1,0 +1,51 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Huangwei.Liao">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap-4.4.1/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'product.css' %}">
+    <!-- Font Awesome https://code.z01.com/boot/font.html#getstart -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    {% block header_extends %}{% endblock %}
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
+        <a class="navbar-brand py-4 " href="/">主页</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="py-4 nav-link {% block nav_buy %}{% endblock %}" href="{% url 'buy' %}">
+                        <i class="fa fa-buy" aria-hidden="true"></i>商品入库<span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="py-4 nav-link {% block nav_sell %}{% endblock %}" href="{% url 'sellList' %}">商品出库</a>
+                </li>
+                <li class="nav-item">
+                    <a class="py-4 nav-link {% block nav_create %}{% endblock %}" href="{% url 'create' %}">新增商品</a>
+                </li>
+            </ul>  
+             <ul class="nav navbar-nav navbar-right">
+                <li><a class="btn btn-primary" href="/admin">管理员</a></li>
+             </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+
+    <!-- Jquery -->
+    <script type="text/javascript" src="{% static 'jquery-1.12.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap-4.4.1/js/bootstrap.min.js' %}"></script>
+    {% block script_extends %}{% endblock %}
+</body>
+</html>

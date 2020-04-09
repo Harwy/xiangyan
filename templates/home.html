@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    香烟自动化系统|首页
+{% endblock %}
+
+{% block content %}
+    <div class="bd-example">
+        <blockquote class="p-3 text-center">
+            <p class="h2 mb-0">香烟自动化系统</p>
+        </blockquote>
+    </div>
+    <div class="col-12">
+        {% if result == 1 %}
+            <div class="alert alert-success" role="alert">商品添加成功！</div>
+        {% elif result == 2 %}
+            <div class="alert alert-danger" role="alert">当前商品已在库存中！</div>
+        {% else %}
+            <div class="alert alert-primary" role="alert">当前无操作！</div>
+        {% endif %}
+    </div>
+    <div class="col-12 p-4">
+        <h2>使用手册</h2>
+        <p>1.对于新的香烟，需要进行创建操作</p>
+
+    </div>
+{% endblock %}
