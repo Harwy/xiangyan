@@ -1,10 +1,16 @@
+from datetime import datetime
+from control import itemBuyAction
+
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, FileResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
-from .models import Item
+from .models import Item, NowItem
+
 
 # Create your views here.
 def index(request):
+    """测试"""
     return HttpResponse("Hello, world. You're at the polls index.")
 
 
@@ -29,20 +35,76 @@ def itemCreate(request):
     return render(request, 'itemCreate.html', context)
 
 
-def itemBuy(request):
-    """商品入库表"""
-    context = {}
-    items = Item.objects.all()
-    context['items'] = items
-    return render(request, 'itemBuy.html', context)
+def txt_create(pids, nums):
+    """生成txt文件"""
+    now = datetime.now()
+    strf = now.strftime('%Y-%m-%d')
+    root = "txtbox/"
+    name = "buyin-{}.txt".format(strf)
+    path = root+name
+    file = open(path, 'w')
+    for i in range(len(pids)):
+        file.write("{},{}\n".format(pids[i], nums[i]))
+    file.close()
+    return name
 
-def itemCreateTXT(request):
-    pass
+
+@csrf_exempt
+def itemBuy(request):
+    context = {}
+    if request.method == 'POST':
+        """AJAX提交返回下载链接"""
+        pids = request.POST.getlist('pids')
+        nums = request.POST.getlist('nums')
+        path = txt_create(pids, nums)
+        context['download'] = path
+        return JsonResponse(context)
+    else:
+        """商品入库表"""
+        items = Item.objects.all()
+        context['items'] = items
+        return render(request, 'itemBuy.html', context)
+
+
+def download_file(request):
+    """下载txt文件"""
+    if request.method == 'GET':
+        path = request.GET.get('download')
+        root = "txtbox/"
+        file = open(root+path, 'rb')
+        response = FileResponse(file)
+        response['Content-Type']='application/octet-stream'  
+        response['Content-Disposition']='attachment;filename="{}"'.format(path)
+        return response
 
 
 def itemSellList(request):
     """商品出库表"""
     context = {}
     items = Item.objects.all()
+    nowItems = NowItem.objects.all()
     context['items'] = items
+    context['nowItems'] = nowItems
     return render(request, 'itemSellList.html', context)
+
+
+@csrf_exempt
+def itemNowAdd(request):
+    """AJAX提交任务商品"""
+    if request.method == 'POST':
+        pids = request.POST.getlist('pids')
+        nums = request.POST.getlist('nums')
+        for i in range(len(pids)):
+            item = Item.objects.get(pid=pids[i])
+            nitem, created = NowItem.objects.get_or_create(item=item)
+            if created is True:
+                nitem.num = int(nums[i])
+                nitem.save()
+            else:
+                nitem.num = int(nums[i]) + nitem.num
+                nitem.save()
+        context = {}
+        context['result'] = 1
+        # 提交异步任务
+
+        return JsonResponse(context)

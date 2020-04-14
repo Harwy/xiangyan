@@ -7,5 +7,6 @@ urlpatterns = [
     path('create/', views.itemCreate, name='create'),
     path('buy/', views.itemBuy, name='buy'),
     path('sellList/', views.itemSellList, name='sellList'),
-    path('createTXT/', views.itemCreateTXT, name='createTXT'),
+    path('download/', views.download_file, name='download'),
+    path('mission-add/', views.itemNowAdd, name='mission'),
 ]

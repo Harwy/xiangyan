@@ -8,5 +8,128 @@
 {% block nav_sell %}active{% endblock %}
 
 {% block content %}
-    <h3 class="home-content">欢迎访问我的网站，随便看</h3>
+    <div class="col-12">
+        <div class="row">
+            <h1 class="p-5">商品出库界面</h1>
+        </div>
+        <div class="row table-responsive">
+            <table class="table text-nowrap">
+                <thead>
+                    <tr>
+                    <th scope="col">uid</th>
+                    <th scope="col">商品名称</th>
+                    <th scope="col">商品编码</th>
+                    <th scope="col">库存</th>
+                    <th scope="col">入库</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <th scope="row">{{ item.uid }}</th>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.pid }}</td>
+                            <td>{{ item.number }}</td>
+                            <td>
+                                <input type="text" id="{{ item.pid }}" name="entry" class="form-control col-md-4 col-sm-4" placeholder="输入大于0的数字">
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <th scope="row">1</th>
+                            <td colspan="4">当前无库存</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <input id="submit" type="submit" class="btn btn-primary" value="确认执行">
+        </div>
+        <div class="row">
+            <text>总计：</text>
+            <text id="sum">0</text>
+        </div>
+        {# -- 当前任务完成情况 -- #}
+        <div class="row">
+            <h1 class="p-5 text-success">商品任务完成情况</h1>
+        </div>
+        <div class="row table-responsive">
+            <table class="table text-nowrap">
+                <thead>
+                    <tr>
+                    <th scope="col">uid</th>
+                    <th scope="col">商品名称</th>
+                    <th scope="col">商品编码</th>
+                    <th scope="col">库存</th>
+                    <th scope="col">任务量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for nitem in nowItems %}
+                        <tr>
+                            <th scope="row">{{ nitem.item.uid }}</th>
+                            <td>{{ nitem.item.name }}</td>
+                            <td>{{ nitem.item.pid }}</td>
+                            <td>{{ nitem.item.number }}</td>
+                            <td>{{ nitem.num }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <th scope="row">1</th>
+                            <td colspan="4">当前无任务</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script_extends %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            // 提交数据
+            $("#submit").click(function(){
+                var pids = new Array();
+                var nums = new Array();
+                $("input[name*='entry']").each(function(i){
+                    var wnum = $(this).val();
+                    var wpid = $(this).attr('id');
+                    if(wnum != ""){
+                        pids.push(wpid);
+                        nums.push(wnum);
+                        //console.log(pids);
+                    }else{
+                        //console.log("当前为空");
+                    }
+                })
+                // ajax 传输
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'mission' %}",
+                    traditional:true,  //加上此项可以传数组
+                    data: {
+                        pids: pids,
+                        nums: nums,
+                        csrfmiddlewaretoken:'{{ csrf_token }}'},
+                    success: function(msg){
+                        alert('success');
+                        window.location.reload();
+                    },
+                    error: function(){
+                        alert('error');
+                    }
+                })
+            });
+            // 实时统计总数
+            $("input[name='entry']").on("change", function(){
+                var total = 0;
+                $("input[name*='entry']").each(function(i){
+                    var wnum = $(this).val();
+                    total = total + wnum*1;
+                })
+                //console.log(total);
+                $("#sum").text(total);
+            });
+        })
+    </script>
 {% endblock %}

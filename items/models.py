@@ -19,3 +19,17 @@ class Item(models.Model):
         verbose_name = '商品库'
         verbose_name_plural = verbose_name
 
+
+class NowItem(models.Model):
+    """当前提交任务数量"""
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='iteming')
+    num = models.IntegerField(default=0, verbose_name='任务数量')
+
+    def __str__(self):
+        return "<NowItem: %s>" % self.item.name
+
+    class Meta:
+        # 排序规则
+        ordering = ['item__uid']
+        verbose_name = '任务库'
+        verbose_name_plural = verbose_name
