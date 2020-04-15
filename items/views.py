@@ -1,3 +1,4 @@
+from threading import Thread
 from datetime import datetime
 from control import itemBuyAction
 
@@ -6,6 +7,30 @@ from django.http import HttpResponse, HttpResponseRedirect, FileResponse, JsonRe
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 from .models import Item, NowItem
+
+
+class missionControl(Thread):
+    """多线程分发任务"""
+    def __init__(self, missions, tstart='07', tend='22'):
+        Thread.__init__(self)
+        self.missions = missions
+        self.tstart = tstart
+        self.tend = tend
+
+    def run(self) -> None:
+        while(self.missions.exists()):
+            tnow = datetime.now().strftime('%H')
+            print("===== %s ======" % tnow)
+            if tnow >= self.tstart and tnow <=self.tend:
+                nitem = self.missions.order_by('?')[0] # 随机抽取
+                itemBuyAction(nitem.item.pid)
+                nitem.num = nitem.num - 1
+                nitem.save()
+                if nitem.num == 0: # 任务完成，删除
+                    nitem.delete()
+            else: break;
+
+
 
 
 # Create your views here.
@@ -106,5 +131,11 @@ def itemNowAdd(request):
         context = {}
         context['result'] = 1
         # 提交异步任务
-
+        missions = NowItem.objects.all()
+        get = missionControl(missions)
+        get.start()
+        get.join()
+        context['status'] = "success"
         return JsonResponse(context)
+
+
