@@ -33,3 +33,17 @@ class NowItem(models.Model):
         ordering = ['item__uid']
         verbose_name = '任务库'
         verbose_name_plural = verbose_name
+
+class ItemSetting(models.Model):
+    max_time = models.IntegerField(default=30, verbose_name='最大随机时间')
+    min_time = models.IntegerField(default=0, verbose_name='最小随机时间')
+    per_time = models.IntegerField(default=20, verbose_name='任务间隔时间')
+    min_hour = models.IntegerField(default=7, verbose_name='最早时间')
+    max_hour = models.IntegerField(default=22, verbose_name='最晚时间')
+
+    def __str__(self):
+        return "任务派发配置"
+
+    class Meta:
+        verbose_name = '任务派发配置'
+        verbose_name_plural = verbose_name

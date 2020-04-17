@@ -14,6 +14,10 @@
             <h2>{{ result }}</h2>
             <h2>{{ name }}</h2>
         </div>
+        <div class='row'>
+            <a class='btn btn-success' href='{% url 'insert' %}'>导入数据</a>
+            <li>谨慎使用该功能</li>
+        </div>
         <div class="row">
             <div class="col-md-3 col-sm-10">
                 <form action="{% url 'create' %}" method="post">

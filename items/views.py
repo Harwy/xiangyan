@@ -8,19 +8,27 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, FileResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
-from .models import Item, NowItem
+from .models import Item, NowItem, ItemSetting
 
 
+##################"""定时任务模块"""#################
 from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import DjangoJobStore, register_events, register_job
 
 scheduler = BackgroundScheduler()
 scheduler.add_jobstore(DjangoJobStore(), "default")
 
-@register_job(scheduler, "interval", seconds=20*60)  # 每20分钟提交一次打卡任务
+setting = ItemSetting.objects.all()
+if not setting.exists():
+    setting = ItemSetting.objects.create()
+else:
+    setting = setting[0]
+
+@register_job(scheduler, "interval", seconds=setting.per_time*60)  # 每20分钟提交一次打卡任务
 def test_job():
     missions = NowItem.objects.all()
-    get = missionControl(missions)
+    itemsetting = ItemSetting.objects.all()[0]
+    get = missionControl(missions, itemsetting)
     get.start()
     get.join()
 
@@ -28,49 +36,28 @@ register_events(scheduler)
 
 scheduler.start()
 print("Scheduler started!")
-
+####################################################
 
 
 class missionControl(Thread):
     """多线程分发任务"""
-    def __init__(self, missions, t_min=0, t_max=30):  # 随机0~30分钟后执行一次打卡
+    def __init__(self, missions, itemsetting):  # 随机0~30分钟后执行一次打卡
         Thread.__init__(self)
         self.missions = missions
-        self.time = randint(t_min, t_max)*60
+        self.time = randint(itemsetting.min_time, itemsetting.max_time)*60
+        self.min_hour = itemsetting.min_hour
+        self.max_hour = itemsetting.max_hour
 
     def run(self) -> None:
-        time.sleep(self.time)  # 休眠[t_min,t_max]内随机分钟数
-        if self.missions.exists():
+        tnow = datetime.now().strftime('%H')
+        if tnow >= self.min_hour and tnow <=self.max_hour and self.missions.exists():
+            time.sleep(self.time)  # 休眠[t_min,t_max]内随机分钟数
             nitem = self.missions.order_by('?')[0] # 随机抽取
             itemBuyAction(nitem.item.pid)
             nitem.num = nitem.num - 1
             nitem.save()
             if nitem.num == 0: # 任务完成，删除
                 nitem.delete()
-
-# class missionControl(Thread):
-#     """多线程分发任务"""
-#     def __init__(self, missions, tstart='07', tend='22', t_min=0, t_max=30):
-#         Thread.__init__(self)
-#         self.missions = missions
-#         self.tstart = tstart
-#         self.tend = tend
-#         self.time = randint(t_min, t_max)*60
-
-#     def run(self) -> None:
-#         while(self.missions.exists()):
-#             tnow = datetime.now().strftime('%H')
-#             if tnow >= self.tstart and tnow <=self.tend:
-#                 nitem = self.missions.order_by('?')[0] # 随机抽取
-#                 itemBuyAction(nitem.item.pid)
-#                 nitem.num = nitem.num - 1
-#                 nitem.save()
-#                 if nitem.num == 0: # 任务完成，删除
-#                     nitem.delete()
-#             else: break;
-
-
-
 
 
 # Create your views here.
@@ -180,3 +167,17 @@ def itemNowAdd(request):
         return JsonResponse(context)
 
 
+def itemInsert(request):
+    file = open('xiangyan-2020-04-15.txt', 'r', encoding='UTF-8')
+    for i in file.readlines():
+        s = i.strip().split(',')
+        Item.objects.create(uid=s[0], name=s[1], pid=s[2], number=s[3])
+    return render(request, 'home.html', {'result': 3})
+
+
+def mission(request):
+    """商品出库表"""
+    context = {}
+    nowItems = NowItem.objects.all()
+    context['nowItems'] = nowItems
+    return render(request, 'itemMission.html', context)

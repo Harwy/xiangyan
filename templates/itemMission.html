@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    香烟自动化系统|商品任务清单
+{% endblock %}
+
+{% block nav_mission %}active{% endblock %}
+
+{% block content %}
+    <div class="col-12">
+        {# -- 当前任务完成情况 -- #}
+        <div class="row">
+            <h1 class="p-5 text-success">商品任务剩余情况</h1>
+        </div>
+        <div class="row table-responsive">
+            <table class="table text-nowrap">
+                <thead>
+                    <tr>
+                    <th scope="col">uid</th>
+                    <th scope="col">商品名称</th>
+                    <th scope="col">商品编码</th>
+                    <th scope="col">库存</th>
+                    <th scope="col">任务量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for nitem in nowItems %}
+                        <tr>
+                            <th scope="row">{{ nitem.item.uid }}</th>
+                            <td>{{ nitem.item.name }}</td>
+                            <td>{{ nitem.item.pid }}</td>
+                            <td>{{ nitem.item.number }}</td>
+                            <td>{{ nitem.num }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <th scope="row">1</th>
+                            <td colspan="4">当前无任务</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script_extends %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+        })
+    </script>
+{% endblock %}
