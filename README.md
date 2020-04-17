@@ -69,4 +69,33 @@ python自带的多线程+while循环，这样可以使得提交后能够在后�
 >  (0-59/10 7-8 * * *)    ------>  7点到8点内的每十分钟  
 >  引用：[Cron时间格式网站](https://crontab.guru/#13_*/1_*_*_*)
 
+**更新！**  
+django-crontab基于linux的crontab指令，因此在windows环境下无法执行！，故`v2.0版本`放弃该方法
+
+#### django-APScheduler模块
+尝试`django-APScheduler`，但是网上查到的方法没有正常使用起来，最后实在github上的官方readme下找到 ===》 [（传送门）](https://github.com/jarekwg/django-apscheduler)。  
+
+
+> 1. pip install django-APScheduler  
+> 2. 将`django-APScheduler`添加进mysite/settings.py---->install INSTALLED_APPS = [..., 'django-APScheduler', yourapp] ，要在自己建的app之前。  
+> 3. settings.py添加 `APSCHEDULER_DATETIME_FORMAT =  "N j, Y, f:s a"  # Default`  
+> 4. python manage.py migrate  
+> 5. 在views.py或者urls.py下使用，代码如下： 
+
+```python
+from apscheduler.schedulers.background import BackgroundScheduler
+from django_apscheduler.jobstores import DjangoJobStore, register_events, register_job
+
+scheduler = BackgroundScheduler()
+scheduler.add_jobstore(DjangoJobStore(), "default")
+
+@register_job(scheduler, "interval", seconds=5)  # 每5s提交一次打卡任务
+def test_job():
+    print("执行一次定时任务")  # 可以将定时任务的函数放在这里
+
+register_events(scheduler)
+
+scheduler.start()
+print("Scheduler started!")
+```
 

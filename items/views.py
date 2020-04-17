@@ -1,5 +1,7 @@
 from threading import Thread
 from datetime import datetime
+import time
+from random import randint
 from control import itemBuyAction
 
 from django.shortcuts import render
@@ -9,26 +11,64 @@ from django.db.models import Q
 from .models import Item, NowItem
 
 
+from apscheduler.schedulers.background import BackgroundScheduler
+from django_apscheduler.jobstores import DjangoJobStore, register_events, register_job
+
+scheduler = BackgroundScheduler()
+scheduler.add_jobstore(DjangoJobStore(), "default")
+
+@register_job(scheduler, "interval", seconds=20*60)  # 每20分钟提交一次打卡任务
+def test_job():
+    missions = NowItem.objects.all()
+    get = missionControl(missions)
+    get.start()
+    get.join()
+
+register_events(scheduler)
+
+scheduler.start()
+print("Scheduler started!")
+
+
+
 class missionControl(Thread):
     """多线程分发任务"""
-    def __init__(self, missions, tstart='07', tend='22'):
+    def __init__(self, missions, t_min=0, t_max=30):  # 随机0~30分钟后执行一次打卡
         Thread.__init__(self)
         self.missions = missions
-        self.tstart = tstart
-        self.tend = tend
+        self.time = randint(t_min, t_max)*60
 
     def run(self) -> None:
-        while(self.missions.exists()):
-            tnow = datetime.now().strftime('%H')
-            print("===== %s ======" % tnow)
-            if tnow >= self.tstart and tnow <=self.tend:
-                nitem = self.missions.order_by('?')[0] # 随机抽取
-                itemBuyAction(nitem.item.pid)
-                nitem.num = nitem.num - 1
-                nitem.save()
-                if nitem.num == 0: # 任务完成，删除
-                    nitem.delete()
-            else: break;
+        time.sleep(self.time)  # 休眠[t_min,t_max]内随机分钟数
+        if self.missions.exists():
+            nitem = self.missions.order_by('?')[0] # 随机抽取
+            itemBuyAction(nitem.item.pid)
+            nitem.num = nitem.num - 1
+            nitem.save()
+            if nitem.num == 0: # 任务完成，删除
+                nitem.delete()
+
+# class missionControl(Thread):
+#     """多线程分发任务"""
+#     def __init__(self, missions, tstart='07', tend='22', t_min=0, t_max=30):
+#         Thread.__init__(self)
+#         self.missions = missions
+#         self.tstart = tstart
+#         self.tend = tend
+#         self.time = randint(t_min, t_max)*60
+
+#     def run(self) -> None:
+#         while(self.missions.exists()):
+#             tnow = datetime.now().strftime('%H')
+#             if tnow >= self.tstart and tnow <=self.tend:
+#                 nitem = self.missions.order_by('?')[0] # 随机抽取
+#                 itemBuyAction(nitem.item.pid)
+#                 nitem.num = nitem.num - 1
+#                 nitem.save()
+#                 if nitem.num == 0: # 任务完成，删除
+#                     nitem.delete()
+#             else: break;
+
 
 
 
@@ -131,10 +171,11 @@ def itemNowAdd(request):
         context = {}
         context['result'] = 1
         # 提交异步任务
-        missions = NowItem.objects.all()
-        get = missionControl(missions)
-        get.start()
-        get.join()
+        ######弃用Thread方法，改用定时任务
+        # missions = NowItem.objects.all()
+        # get = missionControl(missions)
+        # get.start()
+        # get.join()
         context['status'] = "success"
         return JsonResponse(context)
 
