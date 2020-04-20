@@ -37,44 +37,46 @@ if not setting.exists():
 else:
     setting = setting[0]
 pertime = randint(setting.min_time, setting.max_time)
-@register_job(scheduler, "interval", seconds=setting.per_time+pertime)  # 每20分钟提交一次打卡任务
+@register_job(scheduler, "interval", seconds=setting.per_time*10+pertime*10)  # 每20分钟提交一次打卡任务
 def test_job():
     global pertime
-    missions = NowItem.objects.all()
-    itemsetting = ItemSetting.objects.all()[0]
-    get = missionControl(missions, itemsetting)
-    get.start()
-    get.join()
-    logging.warning("waitting:{} min ".format(setting.per_time+pertime))
-    pertime = randint(setting.min_time, setting.max_time)
+    q = ItemSetting.objects.all()[0]
+    tnow = int(datetime.now().strftime('%H'))
+    if tnow >= q.min_hour and tnow <=q.max_hour:
+        missions = NowItem.objects.all()
+        if missions.exists():
+            mission = missions.order_by('?')[0] # 随机抽取
+            get = missionControl(mission)
+            get.start()
+            get.join()
+            logging.warning("Working! waitting:{} min".format(q.per_time+pertime))
+        else:
+            logging.warning("no mission! Please add!")
+        pertime = randint(q.min_time, q.max_time)
+    else:
+        logging.warning("time not in range({},{})".format(q.min_hour, q.max_hour))
 
 register_events(scheduler)
 
 scheduler.start()
-print("Scheduler started!")
+# print("Scheduler started!")
 ####################################################
 
 
 class missionControl(Thread):
     """多线程分发任务"""
-    def __init__(self, missions, itemsetting):  # 随机0~30分钟后执行一次打卡
+    def __init__(self, mission):  # 随机0~30分钟后执行一次打卡
         Thread.__init__(self)
-        self.missions = missions
-        #self.time = randint(itemsetting.min_time, itemsetting.max_time)*60
-        self.min_hour = itemsetting.min_hour
-        self.max_hour = itemsetting.max_hour
+        self.mission = mission
+
 
     def run(self) -> None:
-        tnow = int(datetime.now().strftime('%H'))
-        if tnow >= self.min_hour and tnow <=self.max_hour and self.missions.exists():
-            #time.sleep(self.time)  # 休眠[t_min,t_max]内随机分钟数
-            nitem = self.missions.order_by('?')[0] # 随机抽取
-            logging.warning("solve item:{} store: {}".format(nitem.item.name, nitem.num))
-            itemBuyAction(nitem.item.pid)
-            nitem.num = nitem.num - 1
-            nitem.save()
-            if nitem.num == 0: # 任务完成，删除
-                nitem.delete()
+        logging.warning("销售品名:{} /当前任务库存: {}".format(self.mission.item.name, self.mission.num))
+        itemBuyAction(self.mission.item.pid)
+        self.mission.num = self.mission.num - 1
+        self.mission.save()
+        if self.mission.num == 0: # 任务完成，删除
+            self.mission.delete()
 
 
 # Create your views here.

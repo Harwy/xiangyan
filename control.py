@@ -26,6 +26,7 @@ def itemBuyAction(pid:str):
     k.tap_key('c')
     time.sleep(sleeptime)
     k.tap_key(k.enter_key)
+    time.sleep(sleeptime)
 
 
 def itemBuyActionOne(pid:str):
