@@ -211,10 +211,10 @@ def log(request, pk):
     try:
         log = ItemLog.objects.get(pk=pk)
         path = log.path
-        f = open(path, 'r')
+        f = open(path, 'r', encoding='utf-8')
         context['result'] = 1
         context['name'] = log.name
-        context['log'] = [i for i in f.readlines()]
+        context['log'] = [i for i in f.readlines()[::-1]]
         f.close()
     except:
         context['result'] = 0

@@ -2,7 +2,7 @@
 
 
 {% block title %}
-    日志{{ name }}
+    日志|{{ name }}
 {% endblock %}
 
 {% block nav_logging %}active{% endblock %}
@@ -23,7 +23,7 @@
                 <tbody>
                     {% for item in log %}
                         <tr>
-                            <th scope="row">{{ forloop.counter0 }}</th>
+                            <th scope="row">{{ forloop.counter }}</th>
                             <td>{{ item }}</td>
                         </tr>
                     {% empty %}

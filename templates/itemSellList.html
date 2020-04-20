@@ -2,7 +2,7 @@
 
 
 {% block title %}
-    香烟自动化系统|商品销售清单
+    香烟自动化系统|出库
 {% endblock %}
 
 {% block nav_sell %}active{% endblock %}
@@ -115,7 +115,7 @@
                         console.log(msg['status'])
                         //alert('success');
                         //window.location.reload();
-                        //window.location="{% url 'sellList' %}";
+                        window.location="{% url 'sellList' %}";
                     },
                     error: function(){
                         alert('error');
