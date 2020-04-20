@@ -97,7 +97,7 @@
                     if(wnum != ""){
                         pids.push(wpid);
                         nums.push(wnum);
-                        //console.log(pids);
+                        console.log(pids);
                     }else{
                         //console.log("当前为空");
                     }
@@ -105,16 +105,17 @@
                 // ajax 传输
                 $.ajax({
                     type: 'POST',
-                    url: "{% url 'mission' %}",
+                    url: "{% url 'mission-add' %}",
                     traditional:true,  //加上此项可以传数组
                     data: {
                         pids: pids,
                         nums: nums,
                         csrfmiddlewaretoken:'{{ csrf_token }}'},
                     success: function(msg){
+                        console.log(msg['status'])
                         //alert('success');
                         //window.location.reload();
-                        window.location="{% url 'sellList' %}";
+                        //window.location="{% url 'sellList' %}";
                     },
                     error: function(){
                         alert('error');

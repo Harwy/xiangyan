@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    香烟自动化系统|日志清单
+{% endblock %}
+
+{% block nav_logging %}active{% endblock %}
+
+{% block content %}
+    <div class="col-12">
+        <div class="row">
+            <h1 class="p-5">商品出库界面</h1>
+        </div>
+        <div class="row table-responsive">
+            <table class="table text-nowrap">
+                <thead>
+                    <tr>
+                    <th scope="col">DATE</th>
+                    <th scope="col">PATH</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in logs %}
+                        <tr>
+                            <th scope="row">{{ log.name }}</th>
+                            <td>
+                                <a href="{% url 'log' log.pk %}">{{ log.path }}</a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <th scope="row">1</th>
+                            <td colspan="1">当前无库存</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script_extends %}
+    <script type="text/javascript">
+        
+    </script>
+{% endblock %}

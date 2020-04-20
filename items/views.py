@@ -1,6 +1,7 @@
 from threading import Thread
-from datetime import datetime
+from datetime import datetime,date
 import time
+import logging
 from random import randint
 from control import itemBuyAction
 
@@ -8,8 +9,20 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, FileResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
-from .models import Item, NowItem, ItemSetting
+from .models import Item, NowItem, ItemSetting, ItemLog
 
+# ====log setting======
+LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
+formatter = logging.Formatter('%(asctime)s - %(message)s')
+path = 'log/{}.log'.format(date.today().isoformat())
+
+# logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
+console = logging.FileHandler(filename=path, encoding='utf-8')
+console.setLevel(logging.WARNING)
+console.setFormatter(formatter)
+logging.getLogger('').addHandler(console)
+
+ItemLog.objects.get_or_create(name=date.today().isoformat(), path=path)
 
 ##################"""定时任务模块"""#################
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -23,14 +36,17 @@ if not setting.exists():
     setting = ItemSetting.objects.create()
 else:
     setting = setting[0]
-
-@register_job(scheduler, "interval", seconds=setting.per_time*60)  # 每20分钟提交一次打卡任务
+pertime = randint(setting.min_time, setting.max_time)
+@register_job(scheduler, "interval", seconds=setting.per_time+pertime)  # 每20分钟提交一次打卡任务
 def test_job():
+    global pertime
     missions = NowItem.objects.all()
     itemsetting = ItemSetting.objects.all()[0]
     get = missionControl(missions, itemsetting)
     get.start()
     get.join()
+    logging.warning("waitting:{} min ".format(setting.per_time+pertime))
+    pertime = randint(setting.min_time, setting.max_time)
 
 register_events(scheduler)
 
@@ -44,15 +60,16 @@ class missionControl(Thread):
     def __init__(self, missions, itemsetting):  # 随机0~30分钟后执行一次打卡
         Thread.__init__(self)
         self.missions = missions
-        self.time = randint(itemsetting.min_time, itemsetting.max_time)*60
+        #self.time = randint(itemsetting.min_time, itemsetting.max_time)*60
         self.min_hour = itemsetting.min_hour
         self.max_hour = itemsetting.max_hour
 
     def run(self) -> None:
-        tnow = datetime.now().strftime('%H')
+        tnow = int(datetime.now().strftime('%H'))
         if tnow >= self.min_hour and tnow <=self.max_hour and self.missions.exists():
-            time.sleep(self.time)  # 休眠[t_min,t_max]内随机分钟数
+            #time.sleep(self.time)  # 休眠[t_min,t_max]内随机分钟数
             nitem = self.missions.order_by('?')[0] # 随机抽取
+            logging.warning("solve item:{} store: {}".format(nitem.item.name, nitem.num))
             itemBuyAction(nitem.item.pid)
             nitem.num = nitem.num - 1
             nitem.save()
@@ -181,3 +198,24 @@ def mission(request):
     nowItems = NowItem.objects.all()
     context['nowItems'] = nowItems
     return render(request, 'itemMission.html', context)
+
+def loglist(request):
+    context = {}
+    logs = ItemLog.objects.all()
+    context['logs'] = logs
+    return render(request, 'logList.html', context)
+
+
+def log(request, pk):
+    context = {}
+    try:
+        log = ItemLog.objects.get(pk=pk)
+        path = log.path
+        f = open(path, 'r')
+        context['result'] = 1
+        context['name'] = log.name
+        context['log'] = [i for i in f.readlines()]
+        f.close()
+    except:
+        context['result'] = 0
+    return render(request, 'logging.html', context)

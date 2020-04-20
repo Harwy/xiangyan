@@ -1,0 +1,593 @@
+2020-04-20 10:31:04,232 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2020-04-20 10:31:04,234 - WARNING - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-20 10:31:04,252 - INFO - Added job "test_job" to job store "default"
+2020-04-20 10:31:04,252 - INFO - Scheduler started
+2020-04-20 10:31:14,240 - INFO - Running job "test_job (trigger: interval[0:00:10], next run at: 2020-04-20 10:31:14 CST)" (scheduled at 2020-04-20 10:31:14.232000+08:00)
+2020-04-20 10:31:24,274 - WARNING - Execution of job "test_job (trigger: interval[0:00:10], next run at: 2020-04-20 10:31:24 CST)" skipped: maximum number of running instances reached (1)
+2020-04-20 10:31:24,290 - ERROR - Job "test_job (trigger: interval[0:00:10], next run at: 2020-04-20 10:31:24 CST)" raised an exception
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\apscheduler\executors\base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 43, in test_job
+    logging.info("waitting:{} min solve item:{}".format(setting.per_time + per_time, itemsetting.name))
+UnboundLocalError: local variable 'per_time' referenced before assignment
+2020-04-20 10:31:34,266 - INFO - Running job "test_job (trigger: interval[0:00:10], next run at: 2020-04-20 10:31:34 CST)" (scheduled at 2020-04-20 10:31:34.232000+08:00)
+2020-04-20 10:31:44,250 - WARNING - Execution of job "test_job (trigger: interval[0:00:10], next run at: 2020-04-20 10:31:44 CST)" skipped: maximum number of running instances reached (1)
+2020-04-20 10:31:44,289 - ERROR - Job "test_job (trigger: interval[0:00:10], next run at: 2020-04-20 10:31:44 CST)" raised an exception
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\apscheduler\executors\base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 43, in test_job
+    logging.info("waitting:{} min solve item:{}".format(setting.per_time + per_time, itemsetting.name))
+UnboundLocalError: local variable 'per_time' referenced before assignment
+2020-04-20 10:35:07,904 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2020-04-20 10:35:07,908 - WARNING - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-20 10:35:07,917 - INFO - Added job "test_job" to job store "default"
+2020-04-20 10:35:07,918 - INFO - Scheduler started
+2020-04-20 10:35:24,922 - INFO - Running job "test_job (trigger: interval[0:00:17], next run at: 2020-04-20 10:35:24 CST)" (scheduled at 2020-04-20 10:35:24.904404+08:00)
+2020-04-20 10:35:34,967 - ERROR - Job "test_job (trigger: interval[0:00:17], next run at: 2020-04-20 10:35:41 CST)" raised an exception
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\apscheduler\executors\base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 44, in test_job
+    logging.info("waitting:{} min solve item:{}".format(setting.per_time+pertime, itemsetting.name))
+UnboundLocalError: local variable 'pertime' referenced before assignment
+2020-04-20 10:35:41,939 - INFO - Running job "test_job (trigger: interval[0:00:17], next run at: 2020-04-20 10:35:41 CST)" (scheduled at 2020-04-20 10:35:41.904404+08:00)
+2020-04-20 10:35:51,970 - ERROR - Job "test_job (trigger: interval[0:00:17], next run at: 2020-04-20 10:35:58 CST)" raised an exception
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\apscheduler\executors\base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 44, in test_job
+    logging.info("waitting:{} min solve item:{}".format(setting.per_time+pertime, itemsetting.name))
+UnboundLocalError: local variable 'pertime' referenced before assignment
+2020-04-20 10:36:51,194 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2020-04-20 10:36:51,196 - WARNING - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-20 10:36:51,212 - INFO - Added job "test_job" to job store "default"
+2020-04-20 10:36:51,213 - INFO - Scheduler started
+2020-04-20 10:37:16,211 - INFO - Running job "test_job (trigger: interval[0:00:25], next run at: 2020-04-20 10:37:16 CST)" (scheduled at 2020-04-20 10:37:16.193165+08:00)
+2020-04-20 10:37:26,241 - ERROR - Job "test_job (trigger: interval[0:00:25], next run at: 2020-04-20 10:37:41 CST)" raised an exception
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\apscheduler\executors\base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 44, in test_job
+    logging.info("waitting:{} min solve item:{}".format(setting.per_time+pertime, itemsetting.name))
+AttributeError: 'ItemSetting' object has no attribute 'name'
+2020-04-20 10:40:54,398 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2020-04-20 10:40:54,402 - WARNING - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-20 10:40:54,408 - INFO - Added job "test_job" to job store "default"
+2020-04-20 10:40:54,409 - INFO - Scheduler started
+2020-04-20 10:41:20,409 - INFO - Running job "test_job (trigger: interval[0:00:26], next run at: 2020-04-20 10:41:20 CST)" (scheduled at 2020-04-20 10:41:20.398212+08:00)
+2020-04-20 10:41:20,421 - INFO - solve item:321 store: 6
+2020-04-20 10:41:30,434 - INFO - waitting:26 min 
+2020-04-20 10:41:30,435 - INFO - Job "test_job (trigger: interval[0:00:26], next run at: 2020-04-20 10:41:46 CST)" executed successfully
+2020-04-20 10:41:46,424 - INFO - Running job "test_job (trigger: interval[0:00:26], next run at: 2020-04-20 10:41:46 CST)" (scheduled at 2020-04-20 10:41:46.398212+08:00)
+2020-04-20 10:41:46,443 - INFO - solve item:321 store: 5
+2020-04-20 10:41:56,456 - INFO - waitting:10 min 
+2020-04-20 10:41:56,456 - INFO - Job "test_job (trigger: interval[0:00:26], next run at: 2020-04-20 10:42:12 CST)" executed successfully
+2020-04-20 10:42:12,425 - INFO - Running job "test_job (trigger: interval[0:00:26], next run at: 2020-04-20 10:42:12 CST)" (scheduled at 2020-04-20 10:42:12.398212+08:00)
+2020-04-20 10:42:12,440 - INFO - solve item:321 store: 4
+2020-04-20 10:42:22,451 - INFO - waitting:34 min 
+2020-04-20 10:42:22,452 - INFO - Job "test_job (trigger: interval[0:00:26], next run at: 2020-04-20 10:42:38 CST)" executed successfully
+2020-04-20 10:42:38,425 - INFO - Running job "test_job (trigger: interval[0:00:26], next run at: 2020-04-20 10:42:38 CST)" (scheduled at 2020-04-20 10:42:38.398212+08:00)
+2020-04-20 10:42:38,443 - INFO - solve item:test store: 1
+2020-04-20 10:42:48,461 - INFO - waitting:31 min 
+2020-04-20 10:42:48,461 - INFO - Job "test_job (trigger: interval[0:00:26], next run at: 2020-04-20 10:43:04 CST)" executed successfully
+Job with id items.views.test_job already in jobstore. I'll refresh it
+solve item:321 store: 3
+waitting:21 min 
+solve item:321 store: 2
+waitting:34 min 
+solve item:321 store: 1
+waitting:20 min 
+waitting:18 min 
+waitting:28 min 
+2020-04-20 10:51:40,282 - WARNING - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-20 10:51:59,314 - WARNING - waitting:19 min 
+2020-04-20 10:52:18,314 - WARNING - waitting:17 min 
+2020-04-20 10:52:37,313 - WARNING - waitting:8 min 
+2020-04-20 10:52:56,307 - WARNING - waitting:12 min 
+2020-04-20 10:53:15,321 - WARNING - solve item:云烟 store: 1
+2020-04-20 10:53:25,340 - WARNING - waitting:14 min 
+2020-04-20 10:53:34,307 - WARNING - waitting:21 min 
+2020-04-20 10:53:53,311 - WARNING - waitting:30 min 
+2020-04-20 10:54:29,939 - WARNING - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-20 10:54:31,348 - WARNING - Not Found: /favicon.ico
+2020-04-20 10:54:34,641 - WARNING - Not Found: /favicon.ico
+2020-04-20 10:54:36,425 - WARNING - Not Found: /favicon.ico
+2020-04-20 10:54:43,984 - WARNING - waitting:14 min 
+2020-04-20 10:54:52,245 - WARNING - Not Found: /favicon.ico
+2020-04-20 10:56:19,215 - WARNING - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-20 10:56:46,241 - WARNING - waitting:27 min 
+2020-04-20 10:57:13,253 - WARNING - waitting:7 min 
+2020-04-20 10:57:40,250 - WARNING - waitting:25 min 
+2020-04-20 10:58:07,270 - WARNING - waitting:28 min 
+2020-04-20 10:58:34,262 - WARNING - waitting:16 min 
+2020-04-20 10:59:01,267 - WARNING - waitting:34 min 
+2020-04-20 10:59:28,266 - WARNING - waitting:17 min 
+2020-04-20 10:59:55,261 - WARNING - waitting:15 min 
+2020-04-20 11:00:07,984 - WARNING - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-20 11:00:15,999 - WARNING - waitting:8 min 
+2020-04-20 11:00:24,011 - WARNING - waitting:23 min 
+2020-04-20 11:00:32,024 - WARNING - waitting:29 min 
+2020-04-20 11:02:43,133 - WARNING - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-20 11:02:53,158 - WARNING - solve item:云烟 store: 1
+2020-04-20 11:03:03,156 - WARNING - Execution of job "test_job (trigger: interval[0:00:10], next run at: 2020-04-20 11:03:03 CST)" skipped: maximum number of running instances reached (1)
+2020-04-20 11:03:03,186 - WARNING - waitting:10 min 
+2020-04-20 11:21:29,824 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-20 11:21:48,840 - waitting:19 min 
+2020-04-20 11:22:06,050 - Internal Server Error: /items/loglist/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 206, in loglist
+    return render(request, 'logList.html', context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 910, in render_annotated
+    return self.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 155, in render
+    return compiled_parent._render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 910, in render_annotated
+    return self.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 67, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 910, in render_annotated
+    return self.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\defaulttags.py", line 211, in render
+    nodelist.append(node.render_annotated(context))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 910, in render_annotated
+    return self.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\defaulttags.py", line 447, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\urls\base.py", line 90, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\urls\resolvers.py", line 634, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'logging' not found. 'logging' is not a valid view function or pattern name.
+2020-04-20 11:22:07,859 - waitting:33 min 
+2020-04-20 11:22:26,860 - waitting:14 min 
+2020-04-20 11:22:31,814 - Internal Server Error: /items/log/(?P1\w*)/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 220, in log
+    return render(request, 'logging.html', context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 160, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 198, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 290, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 233, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 450, in parse
+    raise self.error(token, 'Empty variable tag on line %d' % token.lineno)
+django.template.exceptions.TemplateSyntaxError: Empty variable tag on line 5
+2020-04-20 11:22:45,859 - waitting:6 min 
+2020-04-20 11:23:04,874 - waitting:13 min 
+2020-04-20 11:23:23,862 - waitting:11 min 
+2020-04-20 11:23:42,873 - waitting:14 min 
+2020-04-20 11:24:01,867 - waitting:27 min 
+2020-04-20 11:24:20,862 - waitting:28 min 
+2020-04-20 11:24:39,860 - waitting:28 min 
+2020-04-20 11:24:58,899 - waitting:10 min 
+2020-04-20 11:25:17,853 - waitting:24 min 
+2020-04-20 11:25:36,866 - waitting:29 min 
+2020-04-20 11:25:55,856 - waitting:8 min 
+2020-04-20 11:26:14,854 - waitting:22 min 
+2020-04-20 11:26:33,862 - waitting:7 min 
+2020-04-20 11:26:52,881 - waitting:18 min 
+2020-04-20 11:27:11,855 - waitting:13 min 
+2020-04-20 11:27:15,536 - Internal Server Error: /items/loglist/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 206, in loglist
+    return render(request, 'logList.html', context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 160, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 198, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 290, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 233, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\defaulttags.py", line 815, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\defaulttags.py", line 1381, in url
+    args.append(parser.compile_filter(value))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 568, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 668, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '{{' from '{{'
+2020-04-20 11:27:19,095 - Internal Server Error: /items/loglist/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 206, in loglist
+    return render(request, 'logList.html', context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 160, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 198, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 290, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 233, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\defaulttags.py", line 815, in do_for
+    nodelist_loop = parser.parse(('empty', 'endfor',))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\defaulttags.py", line 1381, in url
+    args.append(parser.compile_filter(value))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 568, in compile_filter
+    return FilterExpression(token, self)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 668, in __init__
+    "from '%s'" % (token[upto:], token))
+django.template.exceptions.TemplateSyntaxError: Could not parse the remainder: '{{' from '{{'
+2020-04-20 11:27:30,859 - waitting:19 min 
+2020-04-20 11:27:49,864 - waitting:10 min 
+2020-04-20 11:28:08,887 - waitting:15 min 
+2020-04-20 11:28:27,863 - waitting:13 min 
+2020-04-20 11:28:46,877 - waitting:32 min 
+2020-04-20 11:29:01,522 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-20 11:29:14,550 - waitting:13 min 
+2020-04-20 11:29:27,565 - waitting:13 min 
+2020-04-20 11:29:40,562 - waitting:30 min 
+2020-04-20 11:29:53,558 - waitting:32 min 
+2020-04-20 11:30:06,558 - waitting:19 min 
+2020-04-20 11:30:19,560 - waitting:31 min 
+2020-04-20 11:30:32,561 - waitting:16 min 
+2020-04-20 11:30:45,559 - waitting:10 min 
+2020-04-20 11:30:58,561 - waitting:26 min 
+2020-04-20 11:31:11,556 - waitting:14 min 
+2020-04-20 11:31:24,558 - waitting:17 min 
+2020-04-20 11:31:37,556 - waitting:28 min 
+2020-04-20 11:31:50,559 - waitting:11 min 
+2020-04-20 11:31:55,536 - Internal Server Error: /items/log/1/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 220, in log
+    return render(request, 'logging.html', context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 160, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 198, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 290, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 233, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 450, in parse
+    raise self.error(token, 'Empty variable tag on line %d' % token.lineno)
+django.template.exceptions.TemplateSyntaxError: Empty variable tag on line 5
+2020-04-20 11:32:03,556 - waitting:23 min 
+2020-04-20 11:32:16,569 - waitting:18 min 
+2020-04-20 11:32:29,561 - waitting:23 min 
+2020-04-20 11:32:37,304 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-20 11:32:43,318 - Internal Server Error: /items/log/1/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 221, in log
+    return render(request, 'logging.html', context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 160, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 198, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 290, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 233, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 450, in parse
+    raise self.error(token, 'Empty variable tag on line %d' % token.lineno)
+django.template.exceptions.TemplateSyntaxError: Empty variable tag on line 5
+2020-04-20 11:32:44,594 - Internal Server Error: /items/log/1/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 221, in log
+    return render(request, 'logging.html', context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 160, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 198, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 290, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 233, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 450, in parse
+    raise self.error(token, 'Empty variable tag on line %d' % token.lineno)
+django.template.exceptions.TemplateSyntaxError: Empty variable tag on line 5
+2020-04-20 11:32:54,322 - waitting:17 min 
+2020-04-20 11:32:59,244 - Internal Server Error: /items/log/1/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 221, in log
+    return render(request, 'logging.html', context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 160, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 198, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 290, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 233, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 450, in parse
+    raise self.error(token, 'Empty variable tag on line %d' % token.lineno)
+django.template.exceptions.TemplateSyntaxError: Empty variable tag on line 5
+2020-04-20 11:33:11,348 - waitting:13 min 
+2020-04-20 11:33:19,052 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-20 11:33:50,082 - waitting:31 min 
+2020-04-20 11:34:21,092 - waitting:32 min 
+2020-04-20 11:34:52,095 - waitting:17 min 
+2020-04-20 11:35:09,263 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-20 11:35:25,825 - Internal Server Error: /items/log/1/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 221, in log
+    return render(request, 'logging.html', context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 144, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\engine.py", line 126, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loaders\base.py", line 30, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 160, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 198, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 290, in do_extends
+    nodelist = parser.parse()
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 483, in parse
+    raise self.error(token, e)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 481, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 233, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 450, in parse
+    raise self.error(token, 'Empty variable tag on line %d' % token.lineno)
+django.template.exceptions.TemplateSyntaxError: Empty variable tag on line 5
+2020-04-20 11:35:40,299 - waitting:31 min 
+2020-04-20 11:36:11,294 - waitting:15 min 
+2020-04-20 11:36:42,299 - waitting:29 min 
+2020-04-20 11:37:13,305 - waitting:23 min 
+2020-04-20 11:37:44,322 - waitting:29 min 
+2020-04-20 11:38:15,316 - waitting:23 min 
+2020-04-20 11:38:46,310 - waitting:34 min 
+2020-04-20 11:39:17,293 - waitting:27 min 

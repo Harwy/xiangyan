@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    日志{{ name }}
+{% endblock %}
+
+{% block nav_logging %}active{% endblock %}
+
+{% block content %}
+    <div class="col-12">
+        <div class="row">
+            <h1 class="p-5">日志|{{ name }}</h1>
+        </div>
+        <div class="row table-responsive">
+            <table class="table text-nowrap">
+                <thead>
+                    <tr>
+                    <th scope="col">NO</th>
+                    <th scope="col">DATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in log %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter0 }}</th>
+                            <td>{{ item }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <th scope="row">1</th>
+                            <td colspan="1">当前无库存</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script_extends %}
+    <script type="text/javascript">
+        
+    </script>
+{% endblock %}

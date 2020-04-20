@@ -47,3 +47,16 @@ class ItemSetting(models.Model):
     class Meta:
         verbose_name = '任务派发配置'
         verbose_name_plural = verbose_name
+
+class ItemLog(models.Model):
+    name = models.CharField(max_length=20, verbose_name='日志日期')
+    path = models.CharField(max_length=50, verbose_name='日志路径')
+    created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')  # 创建时间
+
+    def __str__(self):
+        return "日志"
+
+    class Meta:
+        verbose_name = '日志'
+        verbose_name_plural = verbose_name
+
