@@ -15,14 +15,14 @@ class Item(models.Model):
 
     class Meta:
         # 排序规则
-        ordering = ['uid']
+        ordering = ['-uid']
         verbose_name = '商品库'
         verbose_name_plural = verbose_name
 
 
 class NowItem(models.Model):
     """当前提交任务数量"""
-    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='iteming')
+    item = models.OneToOneField(Item, on_delete=models.CASCADE, related_name='titem')
     num = models.IntegerField(default=0, verbose_name='任务数量')
 
     def __str__(self):

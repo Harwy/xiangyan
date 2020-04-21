@@ -11,13 +11,15 @@
     <div class="col-md-10 col-sm-12 p-4">
         <div class="row">
             <h1 class="col">香烟商品新建</h1>
-            <h2>{{ result }}</h2>
-            <h2>{{ name }}</h2>
         </div>
+        <br>
+        <!--
         <div class='row'>
-            <a class='btn btn-success' href='{% url 'insert' %}'>导入数据</a>
+            <a class='btn btn-success' href="{% url 'insert' %}"">导入数据</a>
             <li>谨慎使用该功能</li>
         </div>
+        <br>
+        -->
         <div class="row">
             <div class="col-md-5 col-sm-10">
                 <form action="{% url 'create' %}" method="post">
@@ -45,17 +47,56 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-5 col-sm-10">
-                
+            <div class="col-md-5 col-sm-12 text-danger p-4">
+                <h4>EXCEL上传导入</h4><h6>请务必上传xlsx,xls格式</h6>
             </div>
+        </div>
+        <div class="row">
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" accept=".xlsx" id="corwd_file" onchange="loadFile(this.files[0])">
+                    <label id="jobData" for="corwd_file" class="custom-file-label">上传文件</label>
+                </div>
+                <div class="input-group-append">
+                    <button id="upload" class="btn btn-outline-secondary" type="button">上传</button>
+                  </div>
+            </div> 
+        </div>
+        <div class="row">
+            <p id="sum"></p>
         </div>
     </div>
 {% endblock %}
 
 {% block script_extends %}
     <script type="text/javascript">
+        function loadFile(file){
+            $("#jobData").html(file.name);
+        }
         $(document).ready(function(){
-            
+            $("#upload").click(function(){
+                var formdata = new FormData();
+
+                var file_obj = $("#corwd_file")[0].files[0];
+                var csrf_data = $('[name=csrfmiddlewaretoken]').val();
+                formdata.append('file_obj', file_obj);
+                formdata.append('csrfmiddlewaretoken',csrf_data);
+
+                $.ajax({
+                    url: "{% url 'upload' %}",
+                    type:"POST",
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    success:function(res){
+                        $("#sum").append(
+                            "<a href='"+ "{% url 'download' %}"+"?download="+res['download'] +"'>下载链接</a>"
+                        );
+                        alert("上传成功");
+                        //console.log(res);
+                    }
+                })
+            })
         })
     </script>
 {% endblock %}

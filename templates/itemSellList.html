@@ -20,6 +20,7 @@
                     <th scope="col">商品名称</th>
                     <th scope="col">商品编码</th>
                     <th scope="col">库存</th>
+                    <th scope="col">当前任务</th>
                     <th scope="col">入库</th>
                     </tr>
                 </thead>
@@ -30,14 +31,15 @@
                             <td>{{ item.name }}</td>
                             <td>{{ item.pid }}</td>
                             <td>{{ item.number }}</td>
+                            <td>{{ item.titem.num|default:"0" }}</td>
                             <td>
-                                <input type="text" id="{{ item.pid }}" name="entry" class="form-control col-md-4 col-sm-4" placeholder="输入大于0的数字">
+                                <input type="text" id="{{ item.pid }}" name="entry" class="form-control col-md" placeholder="输入大于0的数字">
                             </td>
                         </tr>
                     {% empty %}
                         <tr>
                             <th scope="row">1</th>
-                            <td colspan="4">当前无库存</td>
+                            <td colspan="5">当前无库存</td>
                         </tr>
                     {% endfor %}
                 </tbody>

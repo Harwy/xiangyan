@@ -37,13 +37,13 @@ if not setting.exists():
 else:
     setting = setting[0]
 pertime = randint(setting.min_time, setting.max_time)
-@register_job(scheduler, "interval", seconds=setting.per_time*10+pertime*10)  # 每20分钟提交一次打卡任务
+@register_job(scheduler, "interval", seconds=setting.per_time+pertime)  # 每20分钟提交一次打卡任务
 def test_job():
     global pertime
     q = ItemSetting.objects.all()[0]
     tnow = int(datetime.now().strftime('%H'))
     if tnow >= q.min_hour and tnow <=q.max_hour:
-        missions = NowItem.objects.all()
+        missions = NowItem.objects.filter(num__gt=0)
         if missions.exists():
             mission = missions.order_by('?')[0] # 随机抽取
             get = missionControl(mission)
@@ -75,16 +75,40 @@ class missionControl(Thread):
         itemBuyAction(self.mission.item.pid)
         self.mission.num = self.mission.num - 1
         self.mission.save()
-        if self.mission.num == 0: # 任务完成，删除
-            self.mission.delete()
+        # if self.mission.num == 0: # 任务完成，删除
+        #     self.mission.delete()
+
+
+class fileExpress(Thread):
+    """多线程导入数据"""
+    def __init__(self, file_name, txt_name):
+        Thread.__init__(self)
+        self.file = file_name
+        self.txt_name = txt_name
+        logging.warning("开始导入===>{}".format(file_name))
+
+    def run(self) -> None:
+        import xlrd
+        book = xlrd.open_workbook(self.file)
+        sheet = book.sheets()[0]
+        nrows = sheet.nrows
+        path = "txtbox/" + self.txt_name
+        f = open(path, 'w')
+        for i in range(nrows):
+            if "503" in sheet.cell(i,0).value:
+                uid = sheet.cell(i,1).value
+                pid = sheet.cell(i,2).value
+                name = sheet.cell(i,3).value
+                num = sheet.cell(i,5).value
+                item, created = Item.objects.get_or_create(pid=pid, uid=uid, name=name)
+                item.number = item.number + num
+                item.save()
+                f.write("{},{}\n".format(uid, int(num)))
+        f.close()
+        logging.warning("=====导入完成=====")
 
 
 # Create your views here.
-def index(request):
-    """测试"""
-    return HttpResponse("Hello, world. You're at the polls index.")
-
-
 def itemCreate(request):
     context = {}
     """新商品录入"""
@@ -106,17 +130,16 @@ def itemCreate(request):
     return render(request, 'itemCreate.html', context)
 
 
-def txt_create(pids, nums):
+def txt_create(pids, nums, ty="buyin"):
     """生成txt文件"""
-    now = datetime.now()
-    strf = now.strftime('%Y-%m-%d')
+    strf = datetime.now().strftime('%Y-%m-%d')
     root = "txtbox/"
-    name = "buyin-{}.txt".format(strf)
+    name = "{}-{}.txt".format(ty, strf)
     path = root+name
-    file = open(path, 'w')
+    f = open(path, 'w')
     for i in range(len(pids)):
-        file.write("{},{}\n".format(pids[i], nums[i]))
-    file.close()
+        f.write("{},{}\n".format(pids[i], nums[i]))
+    f.close()
     return name
 
 
@@ -153,7 +176,7 @@ def itemSellList(request):
     """商品出库表"""
     context = {}
     items = Item.objects.all()
-    nowItems = NowItem.objects.all()
+    nowItems = NowItem.objects.filter(num__gt=0)
     context['items'] = items
     context['nowItems'] = nowItems
     return render(request, 'itemSellList.html', context)
@@ -168,20 +191,12 @@ def itemNowAdd(request):
         for i in range(len(pids)):
             item = Item.objects.get(pid=pids[i])
             nitem, created = NowItem.objects.get_or_create(item=item)
-            if created is True:
-                nitem.num = int(nums[i])
-                nitem.save()
-            else:
-                nitem.num = int(nums[i]) + nitem.num
-                nitem.save()
+            nitem.num = int(nums[i]) + nitem.num
+            item.number = item.number - int(nums[i])
+            item.save()
+            nitem.save()
         context = {}
         context['result'] = 1
-        # 提交异步任务
-        ######弃用Thread方法，改用定时任务
-        # missions = NowItem.objects.all()
-        # get = missionControl(missions)
-        # get.start()
-        # get.join()
         context['status'] = "success"
         return JsonResponse(context)
 
@@ -197,7 +212,7 @@ def itemInsert(request):
 def mission(request):
     """商品出库表"""
     context = {}
-    nowItems = NowItem.objects.all()
+    nowItems = NowItem.objects.filter(num__gt=0)
     context['nowItems'] = nowItems
     return render(request, 'itemMission.html', context)
 
@@ -221,3 +236,20 @@ def log(request, pk):
     except:
         context['result'] = 0
     return render(request, 'logging.html', context)
+
+
+def fileUpload(request):
+    context = {}
+    if request.method == 'POST':
+        file_obj = request.FILES.get('file_obj')
+        file_name = "upload/" + datetime.now().strftime('%Y-%m-%d') + '.xlsx'
+        with open(file_name, 'wb+') as f:
+            for chunk in file_obj.chunks():
+                f.write(chunk)
+        txt_name = "{}-{}.txt".format("pcin", datetime.now().strftime('%Y-%m-%d'))
+        get = fileExpress(file_name, txt_name)
+        get.start()
+        get.join()
+        context['result'] = '1'
+        context['download'] = txt_name
+    return JsonResponse(context)
