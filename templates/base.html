@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Huangwei.Liao">
     <link REL="SHORTCUT ICON" HREF="{% static "favicon.ico" %}"/>
+    <link rel="icon" href="{% static "favicon.ico" %}">
     <title>{% block title %}{% endblock %}</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'bootstrap-4.4.1/css/bootstrap.min.css' %}">
@@ -24,7 +25,7 @@
                     <a class="py-4 nav-link {% block nav_create %}{% endblock %}" href="{% url 'create' %}">新增商品</a>
                 </li>
                 <li class="nav-item">
-                    <a class="py-4 nav-link {% block nav_buy %}{% endblock %}" href="{% url 'buy' %}">商品入库</a>
+                    <a class="py-4 nav-link {% block nav_buy %}{% endblock %}" href="{% url 'download-list' %}">商品入库</a>
                 </li>
                 <li class="nav-item">
                     <a class="py-4 nav-link {% block nav_sell %}{% endblock %}" href="{% url 'sellList' %}">商品出库</a>

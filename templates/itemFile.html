@@ -2,41 +2,42 @@
 
 
 {% block title %}
-    日志|{{ name }}
+    入库列表|香烟自动化系统
 {% endblock %}
 
-{% block nav_logging %}active{% endblock %}
+{% block nav_buy %}active{% endblock %}
 
 {% block content %}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'loglist' %}">日志清单</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ name }}</li>
+            <li class="breadcrumb-item active" aria-current="page">入库文件列表</li>
         </ol>
     </nav>
     <div class="col-12">
         <div class="row">
-            <h1 class="p-5">日志|{{ name }}</h1>
+            <h1 class="p-5">入库列表</h1>
         </div>
         <div class="row table-responsive">
             <table class="table text-nowrap">
                 <thead>
                     <tr>
-                    <th scope="col">NO</th>
-                    <th scope="col">DATE</th>
+                    <th scope="col">FILE</th>
+                    <th scope="col">PATH</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for item in log %}
+                    {% for file in files %}
                         <tr>
-                            <th scope="row">{{ forloop.counter }}</th>
-                            <td>{{ item }}</td>
+                            <th scope="row">{{ file.name }}</th>
+                            <td>
+                                <a href="{% url 'download' file.pk %}">{{ file.path }}</a>
+                            </td>
                         </tr>
                     {% empty %}
                         <tr>
                             <th scope="row">1</th>
-                            <td colspan="1">当前无库存</td>
+                            <td colspan="1">当前无入库文件</td>
                         </tr>
                     {% endfor %}
                 </tbody>

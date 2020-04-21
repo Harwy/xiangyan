@@ -8,18 +8,17 @@
 {% block nav_create %}active{% endblock %}
 
 {% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">新建商品</li>
+        </ol>
+    </nav>
     <div class="col-md-10 col-sm-12 p-4">
         <div class="row">
             <h1 class="col">香烟商品新建</h1>
         </div>
         <br>
-        <!--
-        <div class='row'>
-            <a class='btn btn-success' href="{% url 'insert' %}"">导入数据</a>
-            <li>谨慎使用该功能</li>
-        </div>
-        <br>
-        -->
         <div class="row">
             <div class="col-md-5 col-sm-10">
                 <form action="{% url 'create' %}" method="post">
@@ -55,7 +54,7 @@
             <div class="input-group mb-3">
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" accept=".xlsx" id="corwd_file" onchange="loadFile(this.files[0])">
-                    <label id="jobData" for="corwd_file" class="custom-file-label">上传文件</label>
+                    <label id="jobData" for="corwd_file" class="custom-file-label">上传每周进货文件</label>
                 </div>
                 <div class="input-group-append">
                     <button id="upload" class="btn btn-outline-secondary" type="button">上传</button>
@@ -63,8 +62,18 @@
             </div> 
         </div>
         <div class="row">
-            <p id="sum"></p>
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" accept=".xlsx" id="corwd_file1" onchange="loadFile1(this.files[0])">
+                    <label id="jobData1" for="corwd_file1" class="custom-file-label">上传库存文件</label>
+                </div>
+                <div class="input-group-append">
+                    <button id="upload1" class="btn btn-outline-secondary" type="button">上传</button>
+                  </div>
+            </div> 
         </div>
+        <br>
+        <br>
     </div>
 {% endblock %}
 
@@ -73,6 +82,9 @@
         function loadFile(file){
             $("#jobData").html(file.name);
         }
+        function loadFile1(file){
+            $("#jobData1").html(file.name);
+        }
         $(document).ready(function(){
             $("#upload").click(function(){
                 var formdata = new FormData();
@@ -80,6 +92,7 @@
                 var file_obj = $("#corwd_file")[0].files[0];
                 var csrf_data = $('[name=csrfmiddlewaretoken]').val();
                 formdata.append('file_obj', file_obj);
+                formdata.append('file_type', '1');
                 formdata.append('csrfmiddlewaretoken',csrf_data);
 
                 $.ajax({
@@ -89,10 +102,30 @@
                     processData: false,
                     contentType: false,
                     success:function(res){
-                        $("#sum").append(
-                            "<a href='"+ "{% url 'download' %}"+"?download="+res['download'] +"'>下载链接</a>"
-                        );
                         alert("上传成功");
+                        window.location.href = "{% url 'download-list' %}";
+                        //console.log(res);
+                    }
+                })
+            });
+            $("#upload1").click(function(){
+                var formdata = new FormData();
+
+                var file_obj = $("#corwd_file1")[0].files[0];
+                var csrf_data = $('[name=csrfmiddlewaretoken]').val();
+                formdata.append('file_obj', file_obj);
+                formdata.append('file_type','0');
+                formdata.append('csrfmiddlewaretoken',csrf_data);
+
+                $.ajax({
+                    url: "{% url 'upload' %}",
+                    type:"POST",
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    success:function(res){
+                        alert("上传成功");
+                        window.location.href = "{% url 'download-list' %}";
                         //console.log(res);
                     }
                 })

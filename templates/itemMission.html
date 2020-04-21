@@ -2,12 +2,18 @@
 
 
 {% block title %}
-    香烟自动化系统|商品任务清单
+    商品任务清单|香烟自动化系统
 {% endblock %}
 
 {% block nav_mission %}active{% endblock %}
 
 {% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">任务清单</li>
+        </ol>
+    </nav>
     <div class="col-12">
         {# -- 当前任务完成情况 -- #}
         <div class="row">
@@ -17,9 +23,9 @@
             <table class="table text-nowrap">
                 <thead>
                     <tr>
-                    <th scope="col">uid</th>
+                    <th scope="col">序号</th>
+                    <th scope="col">条形码</th>
                     <th scope="col">商品名称</th>
-                    <th scope="col">商品编码</th>
                     <th scope="col">库存</th>
                     <th scope="col">任务量</th>
                     </tr>
@@ -27,16 +33,15 @@
                 <tbody>
                     {% for nitem in nowItems %}
                         <tr>
-                            <th scope="row">{{ nitem.item.uid }}</th>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ nitem.item.uid }}</td>
                             <td>{{ nitem.item.name }}</td>
-                            <td>{{ nitem.item.pid }}</td>
                             <td>{{ nitem.item.number }}</td>
                             <td>{{ nitem.num }}</td>
                         </tr>
                     {% empty %}
                         <tr>
-                            <th scope="row">1</th>
-                            <td colspan="4">当前无任务</td>
+                            <th scope="row" colspan="5">当前无任务</th>
                         </tr>
                     {% endfor %}
                 </tbody>

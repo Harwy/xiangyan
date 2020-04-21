@@ -448,3 +448,763 @@ NameError: name 'self' is not defined
 2020-04-21 13:30:56,132 - no mission! Please add!
 2020-04-21 13:31:05,127 - no mission! Please add!
 2020-04-21 13:31:14,146 - no mission! Please add!
+2020-04-21 13:36:44,109 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 13:36:53,166 - no mission! Please add!
+2020-04-21 13:37:02,197 - no mission! Please add!
+2020-04-21 13:37:11,155 - no mission! Please add!
+2020-04-21 13:37:20,154 - no mission! Please add!
+2020-04-21 13:37:29,155 - no mission! Please add!
+2020-04-21 13:37:38,135 - no mission! Please add!
+2020-04-21 13:37:47,155 - no mission! Please add!
+2020-04-21 13:37:51,248 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 13:37:53,754 - Internal Server Error: /items/create/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 130, in itemCreate
+    return render(request, 'itemCreate.html', context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 910, in render_annotated
+    return self.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 155, in render
+    return compiled_parent._render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 910, in render_annotated
+    return self.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 67, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 910, in render_annotated
+    return self.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\defaulttags.py", line 447, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\urls\base.py", line 90, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\urls\resolvers.py", line 634, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'insert' not found. 'insert' is not a valid view function or pattern name.
+2020-04-21 13:37:54,090 - Not Found: /favicon.ico
+2020-04-21 13:37:56,259 - no mission! Please add!
+2020-04-21 13:38:01,275 - no mission! Please add!
+2020-04-21 13:38:06,247 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 13:38:07,999 - Internal Server Error: /items/create/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 130, in itemCreate
+    return render(request, 'itemCreate.html', context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 910, in render_annotated
+    return self.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 155, in render
+    return compiled_parent._render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 910, in render_annotated
+    return self.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 67, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 910, in render_annotated
+    return self.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\defaulttags.py", line 447, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\urls\base.py", line 90, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\urls\resolvers.py", line 634, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'insert' not found. 'insert' is not a valid view function or pattern name.
+2020-04-21 13:38:17,277 - no mission! Please add!
+2020-04-21 13:38:28,272 - no mission! Please add!
+2020-04-21 13:38:39,287 - no mission! Please add!
+2020-04-21 13:38:50,297 - no mission! Please add!
+2020-04-21 13:39:01,304 - no mission! Please add!
+2020-04-21 13:39:12,290 - no mission! Please add!
+2020-04-21 13:39:23,299 - no mission! Please add!
+2020-04-21 13:39:34,284 - no mission! Please add!
+2020-04-21 13:39:45,281 - no mission! Please add!
+2020-04-21 13:39:56,289 - no mission! Please add!
+2020-04-21 13:40:07,279 - no mission! Please add!
+2020-04-21 13:40:18,273 - no mission! Please add!
+2020-04-21 13:40:29,310 - no mission! Please add!
+2020-04-21 13:40:40,285 - no mission! Please add!
+2020-04-21 13:40:51,291 - no mission! Please add!
+2020-04-21 13:41:02,284 - no mission! Please add!
+2020-04-21 13:41:13,305 - no mission! Please add!
+2020-04-21 13:41:24,292 - no mission! Please add!
+2020-04-21 13:41:33,958 - Internal Server Error: /items/create/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 130, in itemCreate
+    return render(request, 'itemCreate.html', context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\shortcuts.py", line 36, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 910, in render_annotated
+    return self.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 155, in render
+    return compiled_parent._render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 910, in render_annotated
+    return self.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\loader_tags.py", line 67, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 943, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\base.py", line 910, in render_annotated
+    return self.render(context)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\template\defaulttags.py", line 447, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\urls\base.py", line 90, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\urls\resolvers.py", line 634, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'insert' not found. 'insert' is not a valid view function or pattern name.
+2020-04-21 13:41:35,298 - no mission! Please add!
+2020-04-21 13:41:46,272 - no mission! Please add!
+2020-04-21 13:41:57,276 - no mission! Please add!
+2020-04-21 13:42:08,302 - no mission! Please add!
+2020-04-21 13:42:19,288 - no mission! Please add!
+2020-04-21 13:42:30,290 - no mission! Please add!
+2020-04-21 13:42:41,288 - no mission! Please add!
+2020-04-21 13:42:52,285 - no mission! Please add!
+2020-04-21 13:43:03,292 - no mission! Please add!
+2020-04-21 13:43:14,287 - no mission! Please add!
+2020-04-21 13:43:25,288 - no mission! Please add!
+2020-04-21 13:43:27,149 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 13:43:34,163 - no mission! Please add!
+2020-04-21 13:43:41,197 - no mission! Please add!
+2020-04-21 13:43:45,900 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 19:57:56,547 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 19:58:01,397 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 20:34:11,681 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 20:34:19,707 - no mission! Please add!
+2020-04-21 20:34:27,727 - no mission! Please add!
+2020-04-21 20:34:35,721 - no mission! Please add!
+2020-04-21 20:34:43,717 - no mission! Please add!
+2020-04-21 20:34:51,713 - no mission! Please add!
+2020-04-21 20:34:59,706 - no mission! Please add!
+2020-04-21 20:35:07,724 - no mission! Please add!
+2020-04-21 20:35:15,721 - no mission! Please add!
+2020-04-21 20:35:23,734 - no mission! Please add!
+2020-04-21 20:35:31,559 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 20:35:39,576 - no mission! Please add!
+2020-04-21 20:35:47,607 - no mission! Please add!
+2020-04-21 20:35:55,609 - no mission! Please add!
+2020-04-21 20:36:03,603 - no mission! Please add!
+2020-04-21 20:36:11,605 - no mission! Please add!
+2020-04-21 20:36:19,581 - no mission! Please add!
+2020-04-21 20:36:27,609 - no mission! Please add!
+2020-04-21 20:36:35,579 - no mission! Please add!
+2020-04-21 20:36:43,597 - no mission! Please add!
+2020-04-21 20:36:51,589 - no mission! Please add!
+2020-04-21 20:36:59,616 - no mission! Please add!
+2020-04-21 20:37:07,598 - no mission! Please add!
+2020-04-21 20:37:15,607 - no mission! Please add!
+2020-04-21 20:37:23,583 - no mission! Please add!
+2020-04-21 20:37:31,606 - no mission! Please add!
+2020-04-21 20:37:39,583 - no mission! Please add!
+2020-04-21 20:37:47,618 - no mission! Please add!
+2020-04-21 20:37:55,598 - no mission! Please add!
+2020-04-21 20:38:03,617 - no mission! Please add!
+2020-04-21 20:38:11,600 - no mission! Please add!
+2020-04-21 20:38:19,600 - no mission! Please add!
+2020-04-21 20:38:27,603 - no mission! Please add!
+2020-04-21 20:38:35,596 - no mission! Please add!
+2020-04-21 20:38:43,581 - no mission! Please add!
+2020-04-21 20:38:51,604 - no mission! Please add!
+2020-04-21 20:38:59,596 - no mission! Please add!
+2020-04-21 20:39:07,598 - no mission! Please add!
+2020-04-21 20:39:15,598 - no mission! Please add!
+2020-04-21 20:39:23,609 - no mission! Please add!
+2020-04-21 20:39:31,589 - no mission! Please add!
+2020-04-21 20:39:39,595 - no mission! Please add!
+2020-04-21 20:39:47,585 - no mission! Please add!
+2020-04-21 20:39:55,602 - no mission! Please add!
+2020-04-21 20:40:03,602 - no mission! Please add!
+2020-04-21 20:40:11,600 - no mission! Please add!
+2020-04-21 20:40:19,585 - no mission! Please add!
+2020-04-21 20:40:27,600 - no mission! Please add!
+2020-04-21 20:40:35,595 - no mission! Please add!
+2020-04-21 20:40:43,595 - no mission! Please add!
+2020-04-21 20:40:51,611 - no mission! Please add!
+2020-04-21 20:40:59,605 - no mission! Please add!
+2020-04-21 20:41:07,596 - no mission! Please add!
+2020-04-21 20:41:15,592 - no mission! Please add!
+2020-04-21 20:41:23,599 - no mission! Please add!
+2020-04-21 20:41:31,582 - no mission! Please add!
+2020-04-21 20:41:39,599 - no mission! Please add!
+2020-04-21 20:41:47,598 - no mission! Please add!
+2020-04-21 20:41:55,587 - no mission! Please add!
+2020-04-21 20:42:03,587 - no mission! Please add!
+2020-04-21 20:42:11,599 - no mission! Please add!
+2020-04-21 20:42:19,580 - no mission! Please add!
+2020-04-21 20:42:27,590 - no mission! Please add!
+2020-04-21 20:42:35,597 - no mission! Please add!
+2020-04-21 20:42:37,819 - 开始导入===>upload/2020-04-21.xlsx
+2020-04-21 20:42:40,404 - =====导入完成=====
+2020-04-21 20:42:43,601 - no mission! Please add!
+2020-04-21 20:42:51,597 - no mission! Please add!
+2020-04-21 20:42:59,604 - no mission! Please add!
+2020-04-21 20:43:07,597 - no mission! Please add!
+2020-04-21 20:43:15,598 - no mission! Please add!
+2020-04-21 20:43:23,613 - no mission! Please add!
+2020-04-21 20:43:31,595 - no mission! Please add!
+2020-04-21 20:43:39,589 - no mission! Please add!
+2020-04-21 20:43:47,626 - no mission! Please add!
+2020-04-21 20:43:55,583 - no mission! Please add!
+2020-04-21 20:44:03,591 - no mission! Please add!
+2020-04-21 20:44:11,595 - no mission! Please add!
+2020-04-21 20:44:19,586 - no mission! Please add!
+2020-04-21 20:44:27,584 - no mission! Please add!
+2020-04-21 20:44:35,582 - no mission! Please add!
+2020-04-21 20:44:43,595 - no mission! Please add!
+2020-04-21 20:44:51,579 - no mission! Please add!
+2020-04-21 20:44:59,583 - no mission! Please add!
+2020-04-21 20:45:07,597 - no mission! Please add!
+2020-04-21 20:45:15,594 - no mission! Please add!
+2020-04-21 20:45:23,596 - no mission! Please add!
+2020-04-21 20:45:31,585 - no mission! Please add!
+2020-04-21 20:45:40,020 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 20:45:50,178 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 20:46:01,191 - no mission! Please add!
+2020-04-21 20:46:12,221 - no mission! Please add!
+2020-04-21 20:46:23,230 - no mission! Please add!
+2020-04-21 20:46:28,940 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 20:46:31,072 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 20:46:35,018 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 20:46:46,041 - no mission! Please add!
+2020-04-21 20:46:57,052 - no mission! Please add!
+2020-04-21 20:47:08,064 - no mission! Please add!
+2020-04-21 20:47:19,067 - no mission! Please add!
+2020-04-21 20:47:30,043 - no mission! Please add!
+2020-04-21 20:47:41,049 - no mission! Please add!
+2020-04-21 20:47:52,049 - no mission! Please add!
+2020-04-21 20:48:03,050 - no mission! Please add!
+2020-04-21 20:48:14,071 - no mission! Please add!
+2020-04-21 20:48:25,050 - no mission! Please add!
+2020-04-21 20:48:36,057 - no mission! Please add!
+2020-04-21 20:48:47,050 - no mission! Please add!
+2020-04-21 20:48:58,061 - no mission! Please add!
+2020-04-21 20:49:09,045 - no mission! Please add!
+2020-04-21 20:49:20,057 - no mission! Please add!
+2020-04-21 20:49:31,050 - no mission! Please add!
+2020-04-21 20:49:42,059 - no mission! Please add!
+2020-04-21 20:49:53,054 - no mission! Please add!
+2020-04-21 20:50:04,059 - no mission! Please add!
+2020-04-21 20:50:15,040 - no mission! Please add!
+2020-04-21 20:50:26,051 - no mission! Please add!
+2020-04-21 20:50:37,059 - no mission! Please add!
+2020-04-21 20:50:48,064 - no mission! Please add!
+2020-04-21 20:50:59,055 - no mission! Please add!
+2020-04-21 20:51:10,042 - no mission! Please add!
+2020-04-21 20:51:21,050 - no mission! Please add!
+2020-04-21 20:51:32,057 - no mission! Please add!
+2020-04-21 20:51:43,065 - no mission! Please add!
+2020-04-21 20:51:54,055 - no mission! Please add!
+2020-04-21 20:52:05,063 - no mission! Please add!
+2020-04-21 20:52:16,057 - no mission! Please add!
+2020-04-21 20:52:27,064 - no mission! Please add!
+2020-04-21 20:52:38,066 - no mission! Please add!
+2020-04-21 20:52:49,068 - no mission! Please add!
+2020-04-21 20:53:00,062 - no mission! Please add!
+2020-04-21 20:53:11,048 - no mission! Please add!
+2020-04-21 20:53:22,050 - no mission! Please add!
+2020-04-21 20:53:29,191 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 20:53:40,218 - no mission! Please add!
+2020-04-21 20:53:51,214 - no mission! Please add!
+2020-04-21 20:54:02,232 - no mission! Please add!
+2020-04-21 20:54:13,210 - no mission! Please add!
+2020-04-21 20:54:24,229 - no mission! Please add!
+2020-04-21 20:54:35,215 - no mission! Please add!
+2020-04-21 20:54:46,237 - no mission! Please add!
+2020-04-21 20:54:57,224 - no mission! Please add!
+2020-04-21 20:55:08,230 - no mission! Please add!
+2020-04-21 20:55:19,214 - no mission! Please add!
+2020-04-21 20:55:30,238 - no mission! Please add!
+2020-04-21 20:55:40,053 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 20:55:46,467 - Internal Server Error: /items/file/upload/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 263, in fileUpload
+    for chunk in file_obj.chunks():
+AttributeError: 'NoneType' object has no attribute 'chunks'
+2020-04-21 20:55:47,078 - no mission! Please add!
+2020-04-21 20:55:54,080 - no mission! Please add!
+2020-04-21 20:56:01,094 - no mission! Please add!
+2020-04-21 20:56:08,080 - no mission! Please add!
+2020-04-21 20:56:14,310 - 开始导入===>upload/2020-04-21.xlsx
+2020-04-21 20:56:15,102 - no mission! Please add!
+2020-04-21 20:56:15,285 - =====导入完成=====
+2020-04-21 20:56:21,325 - Internal Server Error: /items/file/upload/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 263, in fileUpload
+    for chunk in file_obj.chunks():
+AttributeError: 'NoneType' object has no attribute 'chunks'
+2020-04-21 20:56:22,116 - no mission! Please add!
+2020-04-21 20:56:29,106 - no mission! Please add!
+2020-04-21 20:56:36,088 - no mission! Please add!
+2020-04-21 20:56:43,104 - no mission! Please add!
+2020-04-21 20:56:47,485 - Not Found: /favicon.ico
+2020-04-21 20:56:50,084 - no mission! Please add!
+2020-04-21 20:56:57,092 - no mission! Please add!
+2020-04-21 20:57:04,083 - no mission! Please add!
+2020-04-21 20:57:11,106 - no mission! Please add!
+2020-04-21 20:57:18,082 - no mission! Please add!
+2020-04-21 20:57:25,098 - no mission! Please add!
+2020-04-21 20:57:32,103 - no mission! Please add!
+2020-04-21 20:57:39,124 - no mission! Please add!
+2020-04-21 20:57:46,083 - no mission! Please add!
+2020-04-21 20:57:53,110 - no mission! Please add!
+2020-04-21 20:58:00,082 - no mission! Please add!
+2020-04-21 20:58:07,100 - no mission! Please add!
+2020-04-21 20:58:14,109 - no mission! Please add!
+2020-04-21 20:58:21,090 - no mission! Please add!
+2020-04-21 20:58:28,095 - no mission! Please add!
+2020-04-21 20:58:35,099 - no mission! Please add!
+2020-04-21 20:58:42,096 - no mission! Please add!
+2020-04-21 20:58:49,082 - no mission! Please add!
+2020-04-21 20:58:56,096 - no mission! Please add!
+2020-04-21 20:59:03,084 - no mission! Please add!
+2020-04-21 20:59:10,083 - no mission! Please add!
+2020-04-21 20:59:17,083 - no mission! Please add!
+2020-04-21 20:59:24,088 - no mission! Please add!
+2020-04-21 20:59:31,095 - no mission! Please add!
+2020-04-21 20:59:38,098 - no mission! Please add!
+2020-04-21 20:59:45,102 - no mission! Please add!
+2020-04-21 20:59:52,080 - no mission! Please add!
+2020-04-21 20:59:54,605 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:00:00,633 - no mission! Please add!
+2020-04-21 21:00:06,641 - no mission! Please add!
+2020-04-21 21:00:12,641 - no mission! Please add!
+2020-04-21 21:00:18,632 - no mission! Please add!
+2020-04-21 21:00:24,638 - no mission! Please add!
+2020-04-21 21:00:30,806 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:00:38,817 - no mission! Please add!
+2020-04-21 21:00:46,831 - no mission! Please add!
+2020-04-21 21:00:54,858 - no mission! Please add!
+2020-04-21 21:00:58,295 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:01:06,241 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:01:17,276 - no mission! Please add!
+2020-04-21 21:01:28,299 - no mission! Please add!
+2020-04-21 21:01:39,280 - no mission! Please add!
+2020-04-21 21:01:50,270 - no mission! Please add!
+2020-04-21 21:02:01,280 - no mission! Please add!
+2020-04-21 21:02:12,295 - no mission! Please add!
+2020-04-21 21:02:23,306 - no mission! Please add!
+2020-04-21 21:02:33,524 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:02:38,563 - no mission! Please add!
+2020-04-21 21:02:43,583 - no mission! Please add!
+2020-04-21 21:02:48,623 - no mission! Please add!
+2020-04-21 21:02:53,954 - no mission! Please add!
+2020-04-21 21:02:58,590 - no mission! Please add!
+2020-04-21 21:03:03,423 - 开始导入===>upload/2020-04-21.xlsx
+2020-04-21 21:03:03,574 - no mission! Please add!
+2020-04-21 21:03:05,737 - =====导入完成=====
+2020-04-21 21:03:08,605 - no mission! Please add!
+2020-04-21 21:03:13,564 - no mission! Please add!
+2020-04-21 21:03:18,565 - no mission! Please add!
+2020-04-21 21:03:23,564 - no mission! Please add!
+2020-04-21 21:03:28,581 - no mission! Please add!
+2020-04-21 21:03:33,552 - no mission! Please add!
+2020-04-21 21:03:38,575 - no mission! Please add!
+2020-04-21 21:03:43,554 - no mission! Please add!
+2020-04-21 21:03:48,560 - no mission! Please add!
+2020-04-21 21:03:53,551 - no mission! Please add!
+2020-04-21 21:03:58,571 - no mission! Please add!
+2020-04-21 21:04:03,552 - no mission! Please add!
+2020-04-21 21:04:08,575 - no mission! Please add!
+2020-04-21 21:04:13,549 - no mission! Please add!
+2020-04-21 21:04:18,553 - no mission! Please add!
+2020-04-21 21:04:23,566 - no mission! Please add!
+2020-04-21 21:04:28,568 - no mission! Please add!
+2020-04-21 21:04:31,601 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:04:41,622 - no mission! Please add!
+2020-04-21 21:04:51,626 - no mission! Please add!
+2020-04-21 21:05:01,649 - no mission! Please add!
+2020-04-21 21:05:11,644 - no mission! Please add!
+2020-04-21 21:05:21,657 - no mission! Please add!
+2020-04-21 21:05:31,626 - no mission! Please add!
+2020-04-21 21:05:41,644 - no mission! Please add!
+2020-04-21 21:05:51,644 - no mission! Please add!
+2020-04-21 21:06:01,644 - no mission! Please add!
+2020-04-21 21:06:11,626 - no mission! Please add!
+2020-04-21 21:06:21,639 - no mission! Please add!
+2020-04-21 21:06:31,625 - no mission! Please add!
+2020-04-21 21:06:33,895 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:06:42,911 - no mission! Please add!
+2020-04-21 21:06:51,930 - no mission! Please add!
+2020-04-21 21:06:57,216 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:07:03,249 - no mission! Please add!
+2020-04-21 21:07:09,242 - no mission! Please add!
+2020-04-21 21:07:15,263 - no mission! Please add!
+2020-04-21 21:07:21,237 - no mission! Please add!
+2020-04-21 21:07:27,260 - no mission! Please add!
+2020-04-21 21:07:32,368 - Internal Server Error: /admin/items/itemfile/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\options.py", line 575, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\utils\decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\views\decorators\cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\sites.py", line 223, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\utils\decorators.py", line 62, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\utils\decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\utils\decorators.py", line 58, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\options.py", line 1618, in changelist_view
+    response = self.response_action(request, queryset=cl.get_queryset(request))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\options.py", line 1331, in response_action
+    response = func(self, request, queryset)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\actions.py", line 36, in delete_selected
+    queryset, opts, request.user, modeladmin.admin_site, using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\utils.py", line 165, in get_deleted_objects
+    to_delete = collector.nested(format_callback)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\utils.py", line 225, in nested
+    roots.extend(self._nested(root, seen, format_callback))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\utils.py", line 211, in _nested
+    ret = [format_callback(obj)]
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\utils.py", line 138, in format_callback
+    no_edit_link = '%s: %s' % (capfirst(opts.verbose_name), obj)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\models.py", line 69, in __str__
+    return "<文件: %s>" % name
+NameError: name 'name' is not defined
+2020-04-21 21:07:33,256 - no mission! Please add!
+2020-04-21 21:07:39,246 - no mission! Please add!
+2020-04-21 21:07:45,237 - no mission! Please add!
+2020-04-21 21:07:45,687 - Internal Server Error: /admin/items/itemfile/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\options.py", line 575, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\utils\decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\views\decorators\cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\sites.py", line 223, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\utils\decorators.py", line 62, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\utils\decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\utils\decorators.py", line 58, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\options.py", line 1618, in changelist_view
+    response = self.response_action(request, queryset=cl.get_queryset(request))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\options.py", line 1331, in response_action
+    response = func(self, request, queryset)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\actions.py", line 36, in delete_selected
+    queryset, opts, request.user, modeladmin.admin_site, using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\utils.py", line 165, in get_deleted_objects
+    to_delete = collector.nested(format_callback)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\utils.py", line 225, in nested
+    roots.extend(self._nested(root, seen, format_callback))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\utils.py", line 211, in _nested
+    ret = [format_callback(obj)]
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\utils.py", line 138, in format_callback
+    no_edit_link = '%s: %s' % (capfirst(opts.verbose_name), obj)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\models.py", line 69, in __str__
+    return "<文件: %s>" % name
+NameError: name 'name' is not defined
+2020-04-21 21:07:51,265 - no mission! Please add!
+2020-04-21 21:07:59,566 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:08:01,743 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:08:05,723 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:08:11,756 - no mission! Please add!
+2020-04-21 21:08:13,688 - Internal Server Error: /admin/items/itemfile/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\options.py", line 575, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\utils\decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\views\decorators\cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\sites.py", line 223, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\utils\decorators.py", line 62, in _wrapper
+    return bound_func(*args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\utils\decorators.py", line 142, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\utils\decorators.py", line 58, in bound_func
+    return func.__get__(self, type(self))(*args2, **kwargs2)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\options.py", line 1618, in changelist_view
+    response = self.response_action(request, queryset=cl.get_queryset(request))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\options.py", line 1331, in response_action
+    response = func(self, request, queryset)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\actions.py", line 36, in delete_selected
+    queryset, opts, request.user, modeladmin.admin_site, using)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\utils.py", line 165, in get_deleted_objects
+    to_delete = collector.nested(format_callback)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\utils.py", line 225, in nested
+    roots.extend(self._nested(root, seen, format_callback))
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\utils.py", line 211, in _nested
+    ret = [format_callback(obj)]
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\contrib\admin\utils.py", line 138, in format_callback
+    no_edit_link = '%s: %s' % (capfirst(opts.verbose_name), obj)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\models.py", line 69, in __str__
+    return "<文件: %s>" % name
+NameError: name 'name' is not defined
+2020-04-21 21:08:17,752 - no mission! Please add!
+2020-04-21 21:08:23,763 - no mission! Please add!
+2020-04-21 21:08:29,768 - no mission! Please add!
+2020-04-21 21:08:35,758 - no mission! Please add!
+2020-04-21 21:08:41,754 - no mission! Please add!
+2020-04-21 21:08:47,768 - no mission! Please add!
+2020-04-21 21:08:49,560 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:08:55,574 - no mission! Please add!
+2020-04-21 21:09:00,745 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:09:04,319 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:09:11,342 - no mission! Please add!
+2020-04-21 21:09:18,361 - no mission! Please add!
+2020-04-21 21:09:25,346 - no mission! Please add!
+2020-04-21 21:09:32,349 - no mission! Please add!
+2020-04-21 21:09:39,353 - no mission! Please add!
+2020-04-21 21:09:46,354 - no mission! Please add!
+2020-04-21 21:09:53,365 - no mission! Please add!
+2020-04-21 21:09:58,077 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:10:03,940 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:10:14,966 - no mission! Please add!
+2020-04-21 21:10:25,967 - no mission! Please add!
+2020-04-21 21:10:36,995 - no mission! Please add!
+2020-04-21 21:10:47,977 - no mission! Please add!
+2020-04-21 21:10:58,977 - no mission! Please add!
+2020-04-21 21:11:09,972 - no mission! Please add!
+2020-04-21 21:11:15,325 - 开始导入===>upload/2020-04-21.xlsx
+2020-04-21 21:11:16,561 - =====导入完成=====
+2020-04-21 21:11:20,983 - no mission! Please add!
+2020-04-21 21:11:31,958 - no mission! Please add!
+2020-04-21 21:11:42,979 - no mission! Please add!
+2020-04-21 21:11:53,966 - no mission! Please add!
+2020-04-21 21:12:04,979 - no mission! Please add!
+2020-04-21 21:12:15,961 - no mission! Please add!
+2020-04-21 21:12:26,993 - no mission! Please add!
+2020-04-21 21:12:37,982 - no mission! Please add!
+2020-04-21 21:12:49,000 - no mission! Please add!
+2020-04-21 21:12:59,979 - no mission! Please add!
+2020-04-21 21:13:10,989 - no mission! Please add!
+2020-04-21 21:13:21,968 - no mission! Please add!
+2020-04-21 21:13:32,979 - no mission! Please add!
+2020-04-21 21:13:36,053 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:13:43,070 - no mission! Please add!
+2020-04-21 21:13:50,080 - no mission! Please add!
+2020-04-21 21:13:51,612 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:14:01,639 - no mission! Please add!
+2020-04-21 21:14:03,892 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:14:11,920 - no mission! Please add!
+2020-04-21 21:14:18,437 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:14:25,456 - no mission! Please add!
+2020-04-21 21:14:32,470 - no mission! Please add!
+2020-04-21 21:14:39,486 - no mission! Please add!
+2020-04-21 21:14:46,489 - no mission! Please add!
+2020-04-21 21:14:53,496 - no mission! Please add!
+2020-04-21 21:15:00,466 - no mission! Please add!
+2020-04-21 21:15:07,504 - no mission! Please add!
+2020-04-21 21:15:14,487 - no mission! Please add!
+2020-04-21 21:15:21,477 - no mission! Please add!
+2020-04-21 21:15:29,768 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:15:37,793 - no mission! Please add!
+2020-04-21 21:15:45,807 - no mission! Please add!
+2020-04-21 21:15:53,823 - no mission! Please add!
+2020-04-21 21:16:01,798 - no mission! Please add!
+2020-04-21 21:16:09,812 - no mission! Please add!
+2020-04-21 21:16:17,802 - no mission! Please add!
+2020-04-21 21:16:25,809 - no mission! Please add!
+2020-04-21 21:16:33,794 - no mission! Please add!
+2020-04-21 21:16:41,829 - no mission! Please add!
+2020-04-21 21:16:49,802 - no mission! Please add!
+2020-04-21 21:16:57,832 - no mission! Please add!
+2020-04-21 21:17:07,009 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:17:18,031 - no mission! Please add!
+2020-04-21 21:17:29,057 - no mission! Please add!
+2020-04-21 21:17:40,052 - no mission! Please add!
+2020-04-21 21:17:51,038 - no mission! Please add!
+2020-04-21 21:18:02,698 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:18:10,736 - no mission! Please add!
+2020-04-21 21:18:18,755 - no mission! Please add!
+2020-04-21 21:18:26,771 - no mission! Please add!
+2020-04-21 21:18:34,725 - no mission! Please add!
+2020-04-21 21:18:42,750 - no mission! Please add!
+2020-04-21 21:18:50,739 - no mission! Please add!
+2020-04-21 21:18:58,733 - no mission! Please add!
+2020-04-21 21:19:06,737 - no mission! Please add!
+2020-04-21 21:19:14,728 - no mission! Please add!
+2020-04-21 21:19:22,731 - no mission! Please add!
+2020-04-21 21:19:30,750 - no mission! Please add!
+2020-04-21 21:19:38,723 - no mission! Please add!
+2020-04-21 21:19:46,740 - no mission! Please add!
+2020-04-21 21:19:54,739 - no mission! Please add!
+2020-04-21 21:20:02,751 - no mission! Please add!
+2020-04-21 21:20:10,722 - no mission! Please add!
+2020-04-21 21:20:18,734 - no mission! Please add!
+2020-04-21 21:20:26,726 - no mission! Please add!
+2020-04-21 21:20:34,753 - no mission! Please add!
+2020-04-21 21:20:42,736 - no mission! Please add!
+2020-04-21 21:20:50,720 - no mission! Please add!
+2020-04-21 21:20:58,731 - no mission! Please add!
+2020-04-21 21:21:06,753 - no mission! Please add!
+2020-04-21 21:21:14,726 - no mission! Please add!
+2020-04-21 21:21:22,730 - no mission! Please add!
+2020-04-21 21:21:30,739 - no mission! Please add!
+2020-04-21 21:21:38,743 - no mission! Please add!
+2020-04-21 21:21:46,741 - no mission! Please add!
+2020-04-21 21:21:54,745 - no mission! Please add!
+2020-04-21 21:22:02,555 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:22:10,578 - no mission! Please add!
+2020-04-21 21:22:18,595 - no mission! Please add!
+2020-04-21 21:22:26,603 - no mission! Please add!
+2020-04-21 21:22:34,596 - no mission! Please add!
+2020-04-21 21:22:42,615 - no mission! Please add!
+2020-04-21 21:22:50,597 - no mission! Please add!
+2020-04-21 21:22:58,613 - no mission! Please add!
+2020-04-21 21:23:06,605 - no mission! Please add!
+2020-04-21 21:23:14,611 - no mission! Please add!
+2020-04-21 21:23:22,606 - no mission! Please add!
+2020-04-21 21:23:30,625 - no mission! Please add!
+2020-04-21 21:23:38,585 - no mission! Please add!
+2020-04-21 21:23:46,614 - no mission! Please add!
+2020-04-21 21:23:54,598 - no mission! Please add!
+2020-04-21 21:24:02,590 - no mission! Please add!
+2020-04-21 21:24:10,586 - no mission! Please add!
+2020-04-21 21:24:18,614 - no mission! Please add!
+2020-04-21 21:24:26,600 - no mission! Please add!
+2020-04-21 21:24:34,587 - no mission! Please add!
+2020-04-21 21:24:42,590 - no mission! Please add!
+2020-04-21 21:24:50,598 - no mission! Please add!
+2020-04-21 21:24:58,583 - no mission! Please add!
+2020-04-21 21:25:06,599 - no mission! Please add!
+2020-04-21 21:25:07,991 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:25:19,016 - no mission! Please add!
+2020-04-21 21:25:30,017 - no mission! Please add!
+2020-04-21 21:25:41,045 - no mission! Please add!
+2020-04-21 21:25:52,030 - no mission! Please add!
+2020-04-21 21:26:03,032 - no mission! Please add!
+2020-04-21 21:26:14,023 - no mission! Please add!
+2020-04-21 21:26:25,040 - no mission! Please add!
+2020-04-21 21:26:36,024 - no mission! Please add!
+2020-04-21 21:26:47,040 - no mission! Please add!
+2020-04-21 21:26:58,017 - no mission! Please add!
+2020-04-21 21:27:09,027 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:27:18,051 - no mission! Please add!
+2020-04-21 21:27:27,083 - no mission! Please add!
+2020-04-21 21:27:36,079 - no mission! Please add!
+2020-04-21 21:27:45,064 - no mission! Please add!
+2020-04-21 21:27:54,069 - no mission! Please add!
+2020-04-21 21:28:03,064 - no mission! Please add!
+2020-04-21 21:28:12,065 - no mission! Please add!
+2020-04-21 21:28:21,050 - no mission! Please add!
+2020-04-21 21:28:24,478 - Internal Server Error: /items/mission-add/
+Traceback (most recent call last):
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\env\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\14623\Documents\GitHub\xiangyan\items\views.py", line 236, in itemNowAdd
+    nitem.num = int(nums[i]) + nitem.num
+UnboundLocalError: local variable 'nums' referenced before assignment
+2020-04-21 21:28:30,063 - no mission! Please add!
+2020-04-21 21:28:39,049 - no mission! Please add!
+2020-04-21 21:28:48,070 - no mission! Please add!
+2020-04-21 21:28:51,899 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:28:57,683 - Job with id items.views.test_job already in jobstore. I'll refresh it
+2020-04-21 21:29:06,702 - 销售品名:贵烟(硬小国酒香) /当前任务库存: 44
+2020-04-21 21:29:15,704 - Execution of job "test_job (trigger: interval[0:00:09], next run at: 2020-04-21 21:29:15 CST)" skipped: maximum number of running instances reached (1)
+2020-04-21 21:29:18,716 - Working! waitting:9 min
+2020-04-21 21:29:24,714 - 销售品名:黄鹤楼(软蓝) /当前任务库存: 256
+2020-04-21 21:29:33,718 - Execution of job "test_job (trigger: interval[0:00:09], next run at: 2020-04-21 21:29:33 CST)" skipped: maximum number of running instances reached (1)
+2020-04-21 21:29:36,734 - Working! waitting:7 min
+2020-04-21 21:29:42,719 - 销售品名:黄鹤楼(软蓝) /当前任务库存: 255
+2020-04-21 21:29:51,710 - Execution of job "test_job (trigger: interval[0:00:09], next run at: 2020-04-21 21:29:51 CST)" skipped: maximum number of running instances reached (1)
+2020-04-21 21:29:54,733 - Working! waitting:10 min
+2020-04-21 21:30:00,729 - 销售品名:黄鹤楼(软蓝) /当前任务库存: 254
+2020-04-21 21:30:09,728 - Execution of job "test_job (trigger: interval[0:00:09], next run at: 2020-04-21 21:30:09 CST)" skipped: maximum number of running instances reached (1)
+2020-04-21 21:30:12,750 - Working! waitting:7 min

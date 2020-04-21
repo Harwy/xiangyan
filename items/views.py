@@ -9,7 +9,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, FileResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
-from .models import Item, NowItem, ItemSetting, ItemLog
+from .models import Item, NowItem, ItemSetting, ItemLog, ItemFile
 
 # ====log setting======
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
@@ -69,22 +69,20 @@ class missionControl(Thread):
         Thread.__init__(self)
         self.mission = mission
 
-
     def run(self) -> None:
         logging.warning("销售品名:{} /当前任务库存: {}".format(self.mission.item.name, self.mission.num))
-        itemBuyAction(self.mission.item.pid)
+        itemBuyAction(self.mission.item.uid)
         self.mission.num = self.mission.num - 1
         self.mission.save()
-        # if self.mission.num == 0: # 任务完成，删除
-        #     self.mission.delete()
 
 
 class fileExpress(Thread):
     """多线程导入数据"""
-    def __init__(self, file_name, txt_name):
+    def __init__(self, file_name, file_type):
         Thread.__init__(self)
         self.file = file_name
-        self.txt_name = txt_name
+        self.file_type = file_type
+        self.status = True
         logging.warning("开始导入===>{}".format(file_name))
 
     def run(self) -> None:
@@ -92,20 +90,45 @@ class fileExpress(Thread):
         book = xlrd.open_workbook(self.file)
         sheet = book.sheets()[0]
         nrows = sheet.nrows
-        path = "txtbox/" + self.txt_name
+        file_type = "进货" if self.file_type == '1' else "库存"
+        txt_name = "{}-{}-{}.txt".format("pcin", file_type, datetime.now().strftime('%Y-%m-%d'))
+        path = "txtbox/" + txt_name
         f = open(path, 'w')
-        for i in range(nrows):
-            if "503" in sheet.cell(i,0).value:
-                uid = sheet.cell(i,1).value
-                pid = sheet.cell(i,2).value
-                name = sheet.cell(i,3).value
-                num = sheet.cell(i,5).value
-                item, created = Item.objects.get_or_create(pid=pid, uid=uid, name=name)
-                item.number = item.number + num
-                item.save()
-                f.write("{},{}\n".format(uid, int(num)))
+        if self.file_type == '1':  # 每周进货入库
+            for i in range(nrows):
+                if sheet.cell(i,0).value.isdigit():
+                    uid = sheet.cell(i,1).value
+                    pid = sheet.cell(i,2).value
+                    name = sheet.cell(i,3).value
+                    num = sheet.cell(i,5).value
+                    if name.isdigit(): 
+                        logging.warning("您操作的是进货入库，但是上传的是'库存单'")
+                        self.status = False
+                        break
+                    
+                    item, created = Item.objects.get_or_create(pid=pid, uid=uid, name=name)
+                    item.number = item.number + num
+                    item.save()
+                    f.write("{},{}\n".format(uid, int(num)))
+        else:  # 库存
+            for i in range(nrows): 
+                if sheet.cell(i,0).value.isdigit():
+                    uid = sheet.cell(i,0).value
+                    pid = sheet.cell(i,1).value
+                    name = sheet.cell(i,2).value
+                    num = sheet.cell(i,4).value
+                    if name.isdigit(): 
+                        logging.warning("您操作的是库存入库，但是上传的是'进货单'")
+                        self.status = False
+                        break
+                    item, created = Item.objects.get_or_create(pid=pid, uid=uid, name=name)
+                    item.number = item.number + num
+                    item.save()
+                    f.write("{},{}\n".format(uid, int(num)))
         f.close()
         logging.warning("=====导入完成=====")
+        if self.status is True:
+            ItemFile.objects.create(name=self.file,path=txt_name)  # 数据库保存导入文件路径
 
 
 # Create your views here.
@@ -160,15 +183,26 @@ def itemBuy(request):
         return render(request, 'itemBuy.html', context)
 
 
-def download_file(request):
+def downloadList(request):
+    """下载文件列表"""
+    ifiles = ItemFile.objects.all()
+    context = {}
+    context['files'] = ifiles
+    return render(request, 'itemFile.html', context)
+
+
+def downloadFile(request, pk):
     """下载txt文件"""
     if request.method == 'GET':
-        path = request.GET.get('download')
-        root = "txtbox/"
-        file = open(root+path, 'rb')
-        response = FileResponse(file)
-        response['Content-Type']='application/octet-stream'  
-        response['Content-Disposition']='attachment;filename="{}"'.format(path)
+        try:
+            ifile = ItemFile.objects.get(pk=pk)
+            root = 'txtbox/'
+            f = open(root+ifile.path, 'rb')
+            response = FileResponse(f)
+            response['Content-Type']='application/octet-stream'  
+            response['Content-Disposition']='attachment;filename="{}"'.format(ifile.path)
+        except Exception as e:
+            pass
         return response
 
 
@@ -176,9 +210,7 @@ def itemSellList(request):
     """商品出库表"""
     context = {}
     items = Item.objects.all()
-    nowItems = NowItem.objects.filter(num__gt=0)
     context['items'] = items
-    context['nowItems'] = nowItems
     return render(request, 'itemSellList.html', context)
 
 
@@ -186,37 +218,40 @@ def itemSellList(request):
 def itemNowAdd(request):
     """AJAX提交任务商品"""
     if request.method == 'POST':
-        pids = request.POST.getlist('pids')
-        nums = request.POST.getlist('nums')
-        for i in range(len(pids)):
-            item = Item.objects.get(pid=pids[i])
-            nitem, created = NowItem.objects.get_or_create(item=item)
-            nitem.num = int(nums[i]) + nitem.num
-            item.number = item.number - int(nums[i])
-            item.save()
-            nitem.save()
+        types = request.POST.get('type')
+        if types == '1':
+            pids = request.POST.getlist('pids')
+            nums = request.POST.getlist('nums')
+            for i in range(len(pids)):
+                item = Item.objects.get(pid=pids[i])
+                nitem, created = NowItem.objects.get_or_create(item=item)
+                nitem.num = int(nums[i]) + nitem.num
+                item.number = item.number - int(nums[i])
+                item.save()
+                nitem.save()
+        else:
+            items = Item.objects.all()
+            for item in items:
+                nitem, created = NowItem.objects.get_or_create(item=item)
+                nitem.num = item.number + nitem.num
+                item.number = 0
+                item.save()
+                nitem.save()
         context = {}
         context['result'] = 1
         context['status'] = "success"
         return JsonResponse(context)
 
 
-def itemInsert(request):
-    file = open('xiangyan-2020-04-15.txt', 'r', encoding='UTF-8')
-    for i in file.readlines():
-        s = i.strip().split(',')
-        Item.objects.create(uid=s[0], name=s[1], pid=s[2], number=s[3])
-    return render(request, 'home.html', {'result': 3})
-
-
 def mission(request):
-    """商品出库表"""
+    """商品任务表"""
     context = {}
     nowItems = NowItem.objects.filter(num__gt=0)
     context['nowItems'] = nowItems
     return render(request, 'itemMission.html', context)
 
 def loglist(request):
+    """log列表"""
     context = {}
     logs = ItemLog.objects.all()
     context['logs'] = logs
@@ -224,6 +259,7 @@ def loglist(request):
 
 
 def log(request, pk):
+    """pk页log展示"""
     context = {}
     try:
         log = ItemLog.objects.get(pk=pk)
@@ -239,17 +275,17 @@ def log(request, pk):
 
 
 def fileUpload(request):
+    """入库文件上传"""
     context = {}
     if request.method == 'POST':
+        file_type = request.FILES.get('file_type')
         file_obj = request.FILES.get('file_obj')
         file_name = "upload/" + datetime.now().strftime('%Y-%m-%d') + '.xlsx'
         with open(file_name, 'wb+') as f:
             for chunk in file_obj.chunks():
                 f.write(chunk)
-        txt_name = "{}-{}.txt".format("pcin", datetime.now().strftime('%Y-%m-%d'))
-        get = fileExpress(file_name, txt_name)
+        get = fileExpress(file_name, file_type)
         get.start()
         get.join()
         context['result'] = '1'
-        context['download'] = txt_name
     return JsonResponse(context)

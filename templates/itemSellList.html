@@ -2,12 +2,18 @@
 
 
 {% block title %}
-    香烟自动化系统|出库
+    出库|香烟自动化系统
 {% endblock %}
 
 {% block nav_sell %}active{% endblock %}
 
 {% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">出库列表</li>
+        </ol>
+    </nav>
     <div class="col-12">
         <div class="row">
             <h1 class="p-5">商品出库界面</h1>
@@ -16,9 +22,9 @@
             <table class="table text-nowrap">
                 <thead>
                     <tr>
-                    <th scope="col">uid</th>
+                    <th scope="col">NO</th>
+                    <th scope="col">条形码</th>
                     <th scope="col">商品名称</th>
-                    <th scope="col">商品编码</th>
                     <th scope="col">库存</th>
                     <th scope="col">当前任务</th>
                     <th scope="col">入库</th>
@@ -27,9 +33,9 @@
                 <tbody>
                     {% for item in items %}
                         <tr>
-                            <th scope="row">{{ item.uid }}</th>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ item.uid }}</td>
                             <td>{{ item.name }}</td>
-                            <td>{{ item.pid }}</td>
                             <td>{{ item.number }}</td>
                             <td>{{ item.titem.num|default:"0" }}</td>
                             <td>
@@ -50,6 +56,12 @@
             <text>总计：</text>
             <text id="sum">0</text>
         </div>
+        <br>
+        <div class="row">
+            <input id="submitall" type="submit" class="btn btn-danger" value="全部执行">
+        </div>
+        <br>
+        <br>
     </div>
 {% endblock %}
 
@@ -79,9 +91,31 @@
                     data: {
                         pids: pids,
                         nums: nums,
+                        type: '1',
                         csrfmiddlewaretoken:'{{ csrf_token }}'},
                     success: function(msg){
-                        console.log(msg['status'])
+                        //console.log(msg['status'])
+                        //alert('success');
+                        //window.location.reload();
+                        window.location="{% url 'mission' %}";
+                    },
+                    error: function(){
+                        alert('error');
+                    }
+                })
+            });
+            // 当前所有库存提交任务
+            $("#submitall").click(function(){
+                // ajax 传输
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'mission-add' %}",
+                    traditional:true,  //加上此项可以传数组
+                    data: {
+                        type: '0',
+                        csrfmiddlewaretoken:'{{ csrf_token }}'},
+                    success: function(msg){
+                        //console.log(msg['status'])
                         //alert('success');
                         //window.location.reload();
                         window.location="{% url 'mission' %}";
