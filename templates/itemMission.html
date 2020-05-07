@@ -8,12 +8,15 @@
 {% block nav_mission %}active{% endblock %}
 
 {% block content %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">任务清单</li>
-        </ol>
-    </nav>
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">任务清单</li>
+            </ol>
+        </nav>
+    </div>
+    <a id='TT' ></a>
     <div class="col-12">
         {# -- 当前任务完成情况 -- #}
         <div class="row">
@@ -28,16 +31,18 @@
                     <th scope="col">商品名称</th>
                     <th scope="col">库存</th>
                     <th scope="col">任务量</th>
+                    <th scope="col">操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for nitem in nowItems %}
+                    {% for item in items %}
                         <tr>
                             <th scope="row">{{ forloop.counter }}</th>
-                            <td>{{ nitem.item.uid }}</td>
-                            <td>{{ nitem.item.name }}</td>
-                            <td>{{ nitem.item.number }}</td>
-                            <td>{{ nitem.num }}</td>
+                            <td>{{ item.uid }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.number }}</td>
+                            <td>{{ item.mission }}</td>
+                            <td><button class="btn btn-danger" id="{{ item.uid }}" name="delete">删除</button></td>
                         </tr>
                     {% empty %}
                         <tr>
@@ -47,12 +52,29 @@
                 </tbody>
             </table>
         </div>
+        <div class="row">
+            <a href="#TT" >⬆跳转到顶部</a>
+        </div>  
     </div>
 {% endblock %}
 
 {% block script_extends %}
     <script type="text/javascript">
         $(document).ready(function(){
+            $("button[name='delete']").click(function(){
+                var uid = $(this).attr('id');
+                $(this).parent().parent().fadeOut("slow");
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'delete' %}",
+                    data:{
+                        uid: uid,
+                    },
+                    success: function(msg){
+                        //console.log(msg);
+                    },
+                })
+            })
         })
     </script>
 {% endblock %}

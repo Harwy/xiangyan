@@ -1,15 +1,11 @@
 from django.contrib import admin
-from .models import Item, NowItem, ItemSetting, ItemLog, ItemFile
+from .models import Item, ItemSetting, ItemLog, ItemFile
 
 # Register your models here.
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('uid', 'name', 'pid', 'number', 'edited_time')
+    list_display = ('uid', 'name', 'number', 'mission', 'created_time', 'edited_time')
 
-
-@admin.register(NowItem)
-class NowItemAdmin(admin.ModelAdmin):
-    list_display = ('item', 'num')
 
 @admin.register(ItemSetting)
 class ItemSettingAdmin(admin.ModelAdmin):

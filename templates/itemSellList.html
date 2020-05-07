@@ -8,16 +8,24 @@
 {% block nav_sell %}active{% endblock %}
 
 {% block content %}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">出库列表</li>
-        </ol>
-    </nav>
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">出库列表</li>
+            </ol>
+        </nav>
+    </div>
+
     <div class="col-12">
         <div class="row">
             <h1 class="p-5">商品出库界面</h1>
+            <a id='TT' ></a>
         </div>
+        <div class="row">
+            <a href="#DD" >⬇跳转到底部</a>
+        </div>
+        <br>
         <div class="row table-responsive">
             <table class="table text-nowrap">
                 <thead>
@@ -37,9 +45,9 @@
                             <td>{{ item.uid }}</td>
                             <td>{{ item.name }}</td>
                             <td>{{ item.number }}</td>
-                            <td>{{ item.titem.num|default:"0" }}</td>
+                            <td>{{ item.mission }}</td>
                             <td>
-                                <input type="text" id="{{ item.pid }}" name="entry" class="form-control col-md" placeholder="输入大于0的数字">
+                                <input type="text" id="{{ item.uid }}" name="entry" class="form-control col-md" placeholder="输入大于0的数字">
                             </td>
                         </tr>
                     {% empty %}
@@ -57,8 +65,13 @@
             <text id="sum">0</text>
         </div>
         <br>
+        <a id='DD' ></a>
         <div class="row">
             <input id="submitall" type="submit" class="btn btn-danger" value="全部执行">
+        </div>
+        <br>
+        <div class="row">
+            <a href="#TT" >⬆跳转到顶部</a>
         </div>
         <br>
         <br>
@@ -70,15 +83,15 @@
         $(document).ready(function(){
             // 提交数据
             $("#submit").click(function(){
-                var pids = new Array();
+                var uids = new Array();
                 var nums = new Array();
                 $("input[name*='entry']").each(function(i){
                     var wnum = $(this).val();
-                    var wpid = $(this).attr('id');
+                    var wuid = $(this).attr('id');
                     if(wnum != ""){
-                        pids.push(wpid);
+                        uids.push(wuid);
                         nums.push(wnum);
-                        console.log(pids);
+                        //console.log(uids);
                     }else{
                         //console.log("当前为空");
                     }
@@ -89,7 +102,7 @@
                     url: "{% url 'mission-add' %}",
                     traditional:true,  //加上此项可以传数组
                     data: {
-                        pids: pids,
+                        uids: uids,
                         nums: nums,
                         type: '1',
                         csrfmiddlewaretoken:'{{ csrf_token }}'},

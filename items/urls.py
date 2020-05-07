@@ -13,4 +13,5 @@ urlpatterns = [
     path('loglist/', views.loglist, name='loglist'),
     path('log/<int:pk>/', views.log, name='log'),
     path('file/upload/', views.fileUpload, name='upload'),  # 上传文件api
+    path('mission/delete/', views.missionDelete, name='delete'),
 ]

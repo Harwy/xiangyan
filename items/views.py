@@ -9,7 +9,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, FileResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
-from .models import Item, NowItem, ItemSetting, ItemLog, ItemFile
+from .models import Item, ItemSetting, ItemLog, ItemFile
 
 # ====log setting======
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
@@ -37,13 +37,13 @@ if not setting.exists():
 else:
     setting = setting[0]
 pertime = randint(setting.min_time, setting.max_time)
-@register_job(scheduler, "interval", seconds=setting.per_time+pertime)  # 每20分钟提交一次打卡任务
+@register_job(scheduler, "interval", seconds=setting.per_time*60 + pertime*60)  # 每20分钟提交一次打卡任务
 def test_job():
     global pertime
     q = ItemSetting.objects.all()[0]
     tnow = int(datetime.now().strftime('%H'))
-    if tnow >= q.min_hour and tnow <=q.max_hour:
-        missions = NowItem.objects.filter(num__gt=0)
+    if tnow >= q.min_hour and tnow <= q.max_hour:
+        missions = Item.objects.filter(mission__gt=0)
         if missions.exists():
             mission = missions.order_by('?')[0] # 随机抽取
             get = missionControl(mission)
@@ -70,9 +70,9 @@ class missionControl(Thread):
         self.mission = mission
 
     def run(self) -> None:
-        logging.warning("销售品名:{} /当前任务库存: {}".format(self.mission.item.name, self.mission.num))
-        itemBuyAction(self.mission.item.uid)
-        self.mission.num = self.mission.num - 1
+        logging.warning("销售品名:{} /当前任务库存: {}".format(self.mission.name, self.mission.mission))
+        itemBuyAction(self.mission.uid)
+        self.mission.mission = self.mission.mission - 1
         self.mission.save()
 
 
@@ -98,15 +98,15 @@ class fileExpress(Thread):
             for i in range(nrows):
                 if sheet.cell(i,0).value.isdigit():
                     uid = sheet.cell(i,1).value
-                    pid = sheet.cell(i,2).value
+                    # pid = sheet.cell(i,2).value
                     name = sheet.cell(i,3).value
                     num = sheet.cell(i,5).value
                     if name.isdigit(): 
                         logging.warning("您操作的是进货入库，但是上传的是'库存单'")
                         self.status = False
                         break
-                    
-                    item, created = Item.objects.get_or_create(pid=pid, uid=uid, name=name)
+                    item, created = Item.objects.get_or_create(uid=uid, name=name)
+                    # item, created = Item.objects.get_or_create(pid=pid, uid=uid, name=name)
                     item.number = item.number + num
                     item.save()
                     f.write("{},{}\n".format(uid, int(num)))
@@ -114,14 +114,15 @@ class fileExpress(Thread):
             for i in range(nrows): 
                 if sheet.cell(i,0).value.isdigit():
                     uid = sheet.cell(i,0).value
-                    pid = sheet.cell(i,1).value
+                    # pid = sheet.cell(i,1).value
                     name = sheet.cell(i,2).value
                     num = sheet.cell(i,4).value
                     if name.isdigit(): 
                         logging.warning("您操作的是库存入库，但是上传的是'进货单'")
                         self.status = False
                         break
-                    item, created = Item.objects.get_or_create(pid=pid, uid=uid, name=name)
+                    item, created = Item.objects.get_or_create(uid=uid, name=name)
+                    # item, created = Item.objects.get_or_create(pid=pid, uid=uid, name=name)
                     item.number = item.number + num
                     item.save()
                     f.write("{},{}\n".format(uid, int(num)))
@@ -136,13 +137,14 @@ def itemCreate(request):
     context = {}
     """新商品录入"""
     if request.method == 'POST':
-        pid = request.POST.get('pid', None)
+        # pid = request.POST.get('pid', None)
         name = request.POST.get('name', None)
         uid = request.POST.get('uid', None)
         number = request.POST.get('number', None)
-        if not Item.objects.filter(Q(pid=pid) | Q(uid=uid)):
+        if not Item.objects.filter(uid=uid):
             # 保存数据
-            Item.objects.create(pid=pid, name=name, uid=uid, number=number)
+            Item.objects.create(name=name, uid=uid, number=number)
+            # Item.objects.create(pid=pid, name=name, uid=uid, number=number)
             context['result'] = 1
         else:
             # 当前已存在
@@ -153,15 +155,15 @@ def itemCreate(request):
     return render(request, 'itemCreate.html', context)
 
 
-def txt_create(pids, nums, ty="buyin"):
+def txt_create(uids, nums, ty="buyin"):
     """生成txt文件"""
     strf = datetime.now().strftime('%Y-%m-%d')
     root = "txtbox/"
     name = "{}-{}.txt".format(ty, strf)
     path = root+name
     f = open(path, 'w')
-    for i in range(len(pids)):
-        f.write("{},{}\n".format(pids[i], nums[i]))
+    for i in range(len(uids)):
+        f.write("{},{}\n".format(uids[i], nums[i]))
     f.close()
     return name
 
@@ -171,9 +173,9 @@ def itemBuy(request):
     context = {}
     if request.method == 'POST':
         """AJAX提交返回下载链接"""
-        pids = request.POST.getlist('pids')
+        uids = request.POST.getlist('uids')
         nums = request.POST.getlist('nums')
-        path = txt_create(pids, nums)
+        path = txt_create(uids, nums)
         context['download'] = path
         return JsonResponse(context)
     else:
@@ -220,23 +222,19 @@ def itemNowAdd(request):
     if request.method == 'POST':
         types = request.POST.get('type')
         if types == '1':
-            pids = request.POST.getlist('pids')
+            uids = request.POST.getlist('uids')
             nums = request.POST.getlist('nums')
-            for i in range(len(pids)):
-                item = Item.objects.get(pid=pids[i])
-                nitem, created = NowItem.objects.get_or_create(item=item)
-                nitem.num = int(nums[i]) + nitem.num
-                item.number = item.number - int(nums[i])
+            for i in range(len(uids)):
+                item = Item.objects.get(uid=uids[i])
+                item.mission = int(nums[i]) + item.mission if int(nums[i]) + item.mission > 0 else 0
+                item.number = item.number - int(nums[i]) if int(nums[i]) + item.mission > 0 else item.number
                 item.save()
-                nitem.save()
         else:
             items = Item.objects.all()
             for item in items:
-                nitem, created = NowItem.objects.get_or_create(item=item)
-                nitem.num = item.number + nitem.num
+                item.mission = item.number + item.mission
                 item.number = 0
                 item.save()
-                nitem.save()
         context = {}
         context['result'] = 1
         context['status'] = "success"
@@ -246,8 +244,8 @@ def itemNowAdd(request):
 def mission(request):
     """商品任务表"""
     context = {}
-    nowItems = NowItem.objects.filter(num__gt=0)
-    context['nowItems'] = nowItems
+    items = Item.objects.filter(mission__gt=0)
+    context['items'] = items
     return render(request, 'itemMission.html', context)
 
 def loglist(request):
@@ -278,7 +276,7 @@ def fileUpload(request):
     """入库文件上传"""
     context = {}
     if request.method == 'POST':
-        file_type = request.FILES.get('file_type')
+        file_type = request.POST.get('file_type')
         file_obj = request.FILES.get('file_obj')
         file_name = "upload/" + datetime.now().strftime('%Y-%m-%d') + '.xlsx'
         with open(file_name, 'wb+') as f:
@@ -287,5 +285,17 @@ def fileUpload(request):
         get = fileExpress(file_name, file_type)
         get.start()
         get.join()
+        context['result'] = '1'
+    return JsonResponse(context)
+
+@csrf_exempt
+def missionDelete(request):
+    context = {}
+    if request.method == 'POST':
+        uid = request.POST.get('uid')
+        item = Item.objects.get(uid=uid)
+        item.number = item.mission + item.number
+        item.mission = 0
+        item.save()
         context['result'] = '1'
     return JsonResponse(context)
