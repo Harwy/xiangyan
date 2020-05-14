@@ -1,3 +1,4 @@
+import os
 from threading import Thread
 from datetime import datetime,date
 import time
@@ -6,7 +7,8 @@ from random import randint
 from control import itemBuyAction
 
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect, FileResponse, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, FileResponse, JsonResponse, Http404
+from django.utils.encoding import escape_uri_path
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 from .models import Item, ItemSetting, ItemLog, ItemFile
@@ -202,10 +204,12 @@ def downloadFile(request, pk):
             f = open(root+ifile.path, 'rb')
             response = FileResponse(f)
             response['Content-Type']='application/octet-stream'  
-            response['Content-Disposition']='attachment;filename="{}"'.format(ifile.path)
+            # response['Content-Disposition']='attachment;filename="{}"'.format(ifile.path)
+            response['Content-Disposition'] = "attachment; filename*=utf-8''{}".format(escape_uri_path(ifile.path))  # 解决下载文件中文命名问题
+            return response
         except Exception as e:
-            pass
-        return response
+            raise Http404
+        
 
 
 def itemSellList(request):
